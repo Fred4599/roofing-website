@@ -1,0 +1,72 @@
+---
+interface Service {
+  title: string;
+  description: string;
+  href: string;
+  icon?: string;
+}
+
+interface Props {
+  services: Service[];
+  columns?: 2 | 3 | 4;
+}
+
+const { services, columns = 3 } = Astro.props;
+
+const icons: Record<string, string> = {
+  'roof-replacement': `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 21V10l9-7 9 7v11M9 21V12h6v9"/></svg>`,
+  'roof-repair': `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-4M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
+  'metal-roofing': `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 21V10l9-7 9 7v11"/><path d="M3 14h18M3 17h18"/></svg>`,
+  'storm-damage': `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 16.9A5 5 0 0018 7h-1.26a8 8 0 10-11.62 9"/><path d="M13 11l-4 6h6l-4 6"/></svg>`,
+  insurance: `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+  siding: `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18"/></svg>`,
+  vinyl: `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 8h18M3 13h18M3 18h18"/></svg>`,
+  'fiber-cement': `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`,
+  wood: `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v20M2 12h20M7 7v10M17 7v10"/></svg>`,
+  default: `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="iconify w-6 h-6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+};
+
+function getIcon(href: string): string {
+  if (href.includes('replacement')) return icons['roof-replacement'];
+  if (href.includes('repair') && href.includes('roof')) return icons['roof-repair'];
+  if (href.includes('metal')) return icons['metal-roofing'];
+  if (href.includes('storm')) return icons['storm-damage'];
+  if (href.includes('insurance')) return icons['insurance'];
+  if (href.includes('vinyl')) return icons['vinyl'];
+  if (href.includes('fiber-cement')) return icons['fiber-cement'];
+  if (href.includes('wood')) return icons['wood'];
+  if (href.includes('siding')) return icons['siding'];
+  return icons['default'];
+}
+
+const columnClasses = {
+  2: 'md:grid-cols-2',
+  3: 'md:grid-cols-3',
+  4: 'md:grid-cols-4',
+};
+---
+
+<div class={`grid grid-cols-1 gap-6 ${columnClasses[columns]}`}>
+  {
+    services.map((service) => (
+      <a href={service.href} class="group relative rounded-xl border p-8 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden bg-white border-slate-200">
+        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+            <div class="w-24 h-24" set:html={service.icon || getIcon(service.href)} />
+        </div>
+        <div class="h-12 w-12 rounded-lg flex items-center justify-center mb-6 bg-yellow-100 text-yellow-600">
+            <div class="w-6 h-6" set:html={service.icon || getIcon(service.href)} />
+        </div>
+        <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-900">{service.title}</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          {service.description}
+        </p>
+        <span class="inline-flex items-center text-sm font-medium transition-colors text-slate-900 group-hover:text-yellow-600">
+          Learn more 
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24" class="iconify ml-1">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7l7 7l-7 7"></path>
+          </svg>
+        </span>
+      </a>
+    ))
+  }
+</div>

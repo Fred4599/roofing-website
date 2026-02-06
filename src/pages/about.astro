@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const currentYear = new Date().getFullYear();
+const yearsInBusiness = currentYear - siteConfig.yearEstablished;
+
+const teamMembers = [
+  {
+    name: 'John Smith',
+    role: 'Owner & Lead Estimator',
+    bio: 'John founded Treasure Valley Roofing & Siding in 2014 with a mission to provide honest, quality roofing services to Boise homeowners.',
+  },
+  {
+    name: 'Mike Johnson',
+    role: 'Operations Manager',
+    bio: 'With 15+ years in the roofing industry, Mike ensures every project runs smoothly from start to finish.',
+  },
+  {
+    name: 'Sarah Davis',
+    role: 'Customer Relations',
+    bio: 'Sarah is your first point of contact and makes sure all your questions are answered promptly.',
+  },
+];
+
+const milestones = [
+  { year: 2014, event: 'Founded in Boise, Idaho' },
+  { year: 2016, event: 'Expanded to serve Meridian and Eagle' },
+  { year: 2018, event: 'Added full siding services' },
+  { year: 2020, event: 'Reached 500+ completed projects' },
+  { year: 2023, event: 'Celebrated 1,000+ satisfied customers' },
+];
+
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Treasure Valley Roofing & Siding',
+  description: 'Learn about our company history, values, and the team behind Treasure Valley Roofing & Siding.',
+  url: `${siteConfig.siteUrl}/about`,
+};
+---
+
+<BaseLayout
+  title="About Us"
+  description={`Learn about Treasure Valley Roofing & Siding - ${yearsInBusiness}+ years serving Boise, Meridian, Eagle, and Garden City with quality roofing and siding services. Meet our team.`}
+  canonicalPath="/about"
+  schema={aboutSchema}
+>
+  <HeroSection
+    title="About Treasure Valley Roofing & Siding"
+    subtitle={`For over ${yearsInBusiness} years, we've been protecting homes and building relationships throughout the Treasure Valley. Learn what makes us different.`}
+  />
+
+  <TrustBadges variant="compact" />
+
+  <!-- Our Story -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <h2 class="text-3xl font-semibold tracking-tight text-slate-900 mb-6">Our Story</h2>
+          <p class="text-slate-500 leading-relaxed mb-4">
+            {siteConfig.siteName} was founded in {siteConfig.yearEstablished} with a simple mission: provide Boise-area
+            homeowners with honest, reliable roofing services at fair prices. What started as a small local operation
+            has grown into one of the Treasure Valley's most trusted roofing and siding contractors.
+          </p>
+          <p class="text-slate-500 leading-relaxed mb-4">
+            We're not a franchise or a national chain -- we're your neighbors. Our team lives and works in the communities
+            we serve, which means we understand the unique challenges that Idaho weather presents to your home.
+          </p>
+          <p class="text-slate-500 leading-relaxed">
+            Over the years, we've completed more than 1,000 projects across Boise, Meridian, Eagle, and Garden City. Our
+            growth has been driven entirely by referrals and repeat customers -- a testament to the quality of our work and
+            the relationships we build.
+          </p>
+        </div>
+        <div class="order-first lg:order-last">
+          <div class="aspect-[4/3] bg-slate-100 rounded-2xl flex flex-col items-center justify-center text-slate-400 gap-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-16 h-16 opacity-50">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span class="text-sm">Company Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 md:py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-semibold tracking-tight text-slate-900 text-center mb-12">Our Values</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center p-8 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="w-14 h-14 mx-auto mb-4 text-yellow-500">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full">
+              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Integrity</h3>
+          <p class="text-sm text-slate-500">No surprise charges, no bait-and-switch tactics -- just honest assessments and fair pricing.</p>
+        </div>
+        <div class="text-center p-8 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="w-14 h-14 mx-auto mb-4 text-yellow-500">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full">
+              <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Quality</h3>
+          <p class="text-sm text-slate-500">Premium materials from trusted manufacturers and skilled craftsmen who take pride in their work.</p>
+        </div>
+        <div class="text-center p-8 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="w-14 h-14 mx-auto mb-4 text-yellow-500">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full">
+              <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Community</h3>
+          <p class="text-sm text-slate-500">Proud local Idaho business supporting local suppliers and giving back to communities we serve.</p>
+        </div>
+        <div class="text-center p-8 bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="w-14 h-14 mx-auto mb-4 text-yellow-500">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full">
+              <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Communication</h3>
+          <p class="text-sm text-slate-500">Questions answered promptly, timelines communicated clearly, and no surprises along the way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-semibold tracking-tight text-slate-900 text-center mb-12">Our Journey</h2>
+      <div class="space-y-0">
+        {milestones.map((milestone) => (
+          <div class="flex gap-4 md:gap-6 pb-8 border-l-2 border-yellow-400 pl-6 md:pl-8 ml-4 relative">
+            <div class="absolute -left-[7px] top-0 w-3 h-3 bg-yellow-400 rounded-full"></div>
+            <div>
+              <span class="font-bold text-yellow-600 text-sm">{milestone.year}</span>
+              <p class="text-slate-600 mt-1">{milestone.event}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-16 md:py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-semibold tracking-tight text-slate-900 text-center mb-4">Meet Our Team</h2>
+      <p class="text-center text-slate-500 max-w-lg mx-auto mb-12">
+        Our experienced team is dedicated to delivering exceptional results on every project.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {teamMembers.map((member) => (
+          <div class="text-center p-8 bg-white rounded-xl border border-slate-200 shadow-sm">
+            <div class="w-24 h-24 mx-auto mb-4 bg-slate-100 rounded-full flex items-center justify-center text-slate-400">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12">
+                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 mb-1">{member.name}</h3>
+            <p class="text-sm font-medium text-yellow-600 mb-3">{member.role}</p>
+            <p class="text-sm text-slate-500">{member.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-semibold tracking-tight text-slate-900 text-center mb-12">Certifications & Partnerships</h2>
+      <div class="flex flex-wrap justify-center gap-6">
+        {['GAF Certified', 'Owens Corning Preferred', 'James Hardie Elite', 'BBB Accredited'].map((cert) => (
+          <div class="w-36 h-20 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center">
+            <span class="text-sm text-slate-500 text-center px-2">{cert}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to Work With Us?"
+    subtitle="Experience the difference of working with a trusted local contractor. Contact us today for your free estimate."
+  />
+</BaseLayout>

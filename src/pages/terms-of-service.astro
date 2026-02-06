@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="Terms of service for Treasure Valley Roofing & Siding website. Read our terms and conditions for using our services."
+  canonicalPath="/terms-of-service"
+  noindex={true}
+>
+  <section class="section">
+    <div class="container">
+      <div class="content">
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last updated: January 2024</p>
+
+        <h2>Agreement to Terms</h2>
+        <p>
+          By accessing or using the {siteConfig.siteName} website, you agree to be bound by these Terms of Service. If
+          you do not agree to these terms, please do not use our website.
+        </p>
+
+        <h2>Services Description</h2>
+        <p>
+          {siteConfig.siteName} provides residential roofing and siding services in the Treasure Valley area of Idaho.
+          This website provides information about our services and allows visitors to request estimates.
+        </p>
+
+        <h2>Estimates and Pricing</h2>
+        <p>
+          Estimates provided through this website or in person are valid for 30 days unless otherwise specified. Final
+          pricing is subject to on-site inspection and may vary based on actual conditions discovered during the
+          project.
+        </p>
+
+        <h2>Service Contracts</h2>
+        <p>
+          All work performed by {siteConfig.siteName} is governed by a separate written contract signed by both parties.
+          These Terms of Service apply only to use of this website.
+        </p>
+
+        <h2>Intellectual Property</h2>
+        <p>
+          All content on this website, including text, images, logos, and design, is the property of {siteConfig.siteName}
+          and is protected by copyright law. You may not reproduce, distribute, or use any content without our written permission.
+        </p>
+
+        <h2>User Submissions</h2>
+        <p>
+          By submitting information through our contact forms, you grant us permission to use that information to
+          respond to your inquiry and provide services. You represent that any information you provide is accurate.
+        </p>
+
+        <h2>Limitation of Liability</h2>
+        <p>
+          This website is provided "as is" without warranties of any kind. {siteConfig.siteName} is not liable for any
+          damages arising from your use of this website or reliance on information contained herein.
+        </p>
+
+        <h2>External Links</h2>
+        <p>
+          Our website may contain links to third-party websites. We are not responsible for the content or privacy
+          practices of these external sites.
+        </p>
+
+        <h2>Governing Law</h2>
+        <p>
+          These Terms of Service are governed by the laws of the State of Idaho. Any disputes shall be resolved in the
+          courts of Ada County, Idaho.
+        </p>
+
+        <h2>Changes to Terms</h2>
+        <p>
+          We reserve the right to modify these Terms of Service at any time. Changes will be posted on this page with an
+          updated revision date. Continued use of the website constitutes acceptance of the modified terms.
+        </p>
+
+        <h2>Contact Us</h2>
+        <p>If you have questions about these Terms of Service, please contact us:</p>
+        <p>
+          <strong>{siteConfig.siteName}</strong><br />
+          {siteConfig.address.full}<br />
+          Phone: <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a><br />
+          Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .last-updated {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  h2 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: var(--color-text);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+  }
+</style>

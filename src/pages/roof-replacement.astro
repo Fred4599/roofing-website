@@ -1,0 +1,452 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FAQ from '../components/FAQ.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const processSteps = [
+  {
+    number: 1,
+    title: 'Free Inspection & Estimate',
+    description: 'We thoroughly inspect your roof, discuss your needs, and provide a detailed written estimate with material options.',
+  },
+  {
+    number: 2,
+    title: 'Material Selection',
+    description: 'Choose from premium shingles in various styles and colors. We help you select the best option for your home and budget.',
+  },
+  {
+    number: 3,
+    title: 'Preparation & Protection',
+    description: 'We protect your landscaping, vehicles, and property. Dumpster delivered and materials staged for efficient installation.',
+  },
+  {
+    number: 4,
+    title: 'Complete Tear-Off',
+    description: 'Old shingles and underlayment are completely removed. We inspect the decking for damage and replace any rotted sections.',
+  },
+  {
+    number: 5,
+    title: 'Quality Installation',
+    description: 'New ice & water shield, synthetic underlayment, and premium shingles installed to manufacturer specifications.',
+  },
+  {
+    number: 6,
+    title: 'Final Inspection & Cleanup',
+    description: 'We conduct a thorough inspection, magnetic sweep for nails, and complete cleanup. You walk through with us before we leave.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'How much does a roof replacement cost in Boise?',
+    answer: 'Roof replacement costs in the Treasure Valley typically range from $8,000 to $25,000+ depending on size, materials, and complexity. A typical 2,000 sq ft home with architectural shingles averages $12,000-$16,000. We provide free detailed estimates so you know exactly what to expect.',
+  },
+  {
+    question: 'How long will my new roof last?',
+    answer: 'Quality architectural asphalt shingles last 25-30 years in Idaho conditions. Premium shingles can last 30-50 years. Metal roofing lasts 40-70 years. Proper ventilation and installation are key factors—that\'s why we\'re certified installers offering extended warranties.',
+  },
+  {
+    question: 'Do I need to be home during the replacement?',
+    answer: 'No, you don\'t need to be home. Many customers go to work while we complete their roof. We\'ll communicate before, during, and after. We do need access to your electrical outlet and ask that you move vehicles from the driveway.',
+  },
+  {
+    question: 'Will you handle the permits?',
+    answer: 'Yes, we handle all necessary permits for your roof replacement. Building permits are required in Boise and most Treasure Valley cities. The permit cost is included in our estimate, and we manage the inspection process.',
+  },
+  {
+    question: 'What warranty do I get with a new roof?',
+    answer: 'You receive our 10-year workmanship warranty plus manufacturer warranties. As GAF and Owens Corning certified contractors, we can offer Golden Pledge (50-year) and Platinum Protection (lifetime) warranties that include labor coverage.',
+  },
+  {
+    question: 'Can you match my roof to my siding and trim?',
+    answer: 'Absolutely! We\'ll bring color samples and help you select shingles that complement your home\'s exterior. Curb appeal is important, and the right shingle color can transform your home\'s appearance.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Roof Replacement',
+  provider: {
+    '@type': 'RoofingContractor',
+    name: siteConfig.siteName,
+    telephone: siteConfig.phone,
+  },
+  areaServed: siteConfig.serviceAreas.map((area) => ({
+    '@type': 'City',
+    name: area.name,
+  })),
+  description: 'Complete roof replacement services in Boise, Idaho. Quality materials, expert installation, and comprehensive warranties.',
+};
+---
+
+<BaseLayout
+  title="Roof Replacement in Boise"
+  description="Expert roof replacement in Boise, Meridian, Eagle, and Garden City. GAF & Owens Corning certified. Free estimates, quality materials, and warranties up to 50 years."
+  canonicalPath="/roof-replacement"
+  schema={serviceSchema}
+>
+  <HeroSection
+    variant="service"
+    title="Roof Replacement Services in Boise"
+    subtitle="Protect your home with a quality roof replacement from the Treasure Valley's trusted roofing experts. Premium materials, expert installation, and warranties that last."
+    ctaText="Get Free Estimate"
+    ctaHref="/contact"
+  />
+
+  <TrustBadges />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>When Is It Time for a New Roof?</h2>
+          <p>
+            Your roof protects everything you value. Knowing when to replace it can save you from costly water damage,
+            mold, and structural issues. Here are signs it may be time:
+          </p>
+          <ul class="signs-list">
+            <li>
+              <strong>Age:</strong> If your asphalt roof is 20+ years old, it's approaching the end of its lifespan.
+            </li>
+            <li>
+              <strong>Curling or Buckling Shingles:</strong> Shingles that are warped indicate weathering and potential leaks.
+            </li>
+            <li>
+              <strong>Missing Shingles:</strong> Gaps in your roof leave your home vulnerable to water damage.
+            </li>
+            <li>
+              <strong>Granule Loss:</strong> Finding granules in your gutters means shingles are deteriorating.
+            </li>
+            <li>
+              <strong>Daylight Through Roof Boards:</strong> If you see light in your attic, moisture can get in too.
+            </li>
+            <li>
+              <strong>Sagging Roof Deck:</strong> A sagging roof is a serious structural concern requiring immediate attention.
+            </li>
+            <li>
+              <strong>Multiple Leaks:</strong> If you're constantly repairing leaks, replacement is more cost-effective.
+            </li>
+          </ul>
+          <p>
+            Not sure if you need a replacement? We offer <strong>free roof inspections</strong> with honest assessments.
+            We'll tell you if a repair will suffice or if replacement is the better investment.
+          </p>
+          <a href="/contact" class="btn btn-primary">Schedule Free Inspection</a>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 21h18M3 21V10l9-7 9 7v11M9 21V12h6v9" />
+            </svg>
+            <span>Before/After Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks
+    steps={processSteps}
+    title="Our Roof Replacement Process"
+    subtitle="We've refined our process over 1,000+ projects to ensure quality results and minimal disruption to your life."
+  />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Premium Materials We Install</h2>
+      <p class="text-center section-subtitle">
+        We're proud partners with the industry's leading manufacturers, offering you the best roofing products available.
+      </p>
+
+      <div class="materials-showcase">
+        <div class="material-item">
+          <div class="material-badge">Most Popular</div>
+          <h3>GAF Timberline HDZ</h3>
+          <p>
+            America's #1 selling shingle with LayerLock technology. Excellent wind resistance up to 130 MPH. Available
+            in 20+ colors.
+          </p>
+          <ul>
+            <li>StainGuard Plus algae protection</li>
+            <li>Golden Pledge warranty eligible</li>
+            <li>Class A fire rating</li>
+          </ul>
+        </div>
+
+        <div class="material-item">
+          <h3>Owens Corning Duration</h3>
+          <p>
+            SureNail Technology provides superior wind resistance. TruDefinition color for enhanced curb appeal.
+          </p>
+          <ul>
+            <li>130 MPH wind warranty</li>
+            <li>Platinum Protection eligible</li>
+            <li>Limited lifetime warranty</li>
+          </ul>
+        </div>
+
+        <div class="material-item">
+          <h3>Metal Roofing</h3>
+          <p>
+            Standing seam and metal shingle options for maximum durability. Perfect for Idaho's climate with 50+ year
+            lifespan.
+          </p>
+          <ul>
+            <li>Energy efficient</li>
+            <li>Fire resistant</li>
+            <li>Excellent snow shedding</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="warranty-highlight">
+        <div class="warranty-content">
+          <h2>Industry-Leading Warranties</h2>
+          <p>
+            Your roof is only as good as the warranty behind it. As certified contractors for GAF and Owens Corning, we
+            offer warranties that most roofers simply cannot.
+          </p>
+          <div class="warranty-cards">
+            <div class="warranty-card">
+              <span class="warranty-years">10 Years</span>
+              <h4>Workmanship Warranty</h4>
+              <p>Our installation is backed by a 10-year labor warranty.</p>
+            </div>
+            <div class="warranty-card featured">
+              <span class="warranty-years">50 Years</span>
+              <h4>GAF Golden Pledge</h4>
+              <p>Material and workmanship coverage for 50 years.</p>
+            </div>
+            <div class="warranty-card">
+              <span class="warranty-years">Lifetime</span>
+              <h4>Owens Corning Platinum</h4>
+              <p>Lifetime limited warranty with labor included.</p>
+            </div>
+          </div>
+          <a href="/warranties" class="btn btn-outline">View Full Warranty Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="financing-banner">
+        <div class="financing-content">
+          <h2>Flexible Financing Available</h2>
+          <p>
+            Don't let budget concerns delay protecting your home. We offer financing options including same-as-cash
+            plans and low monthly payments to fit your budget.
+          </p>
+          <a href="/financing" class="btn btn-primary">View Financing Options</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} title="Roof Replacement FAQs" />
+
+  <CityGrid
+    title="Serving the Treasure Valley"
+    description="We provide roof replacement services throughout Ada County and surrounding areas."
+  />
+
+  <CTASection
+    title="Ready for a New Roof?"
+    subtitle="Get a free estimate for your roof replacement. We'll inspect your roof, discuss options, and provide transparent pricing."
+    variant="default"
+  />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  .intro-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .signs-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .signs-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .signs-list li::before {
+    content: '⚠';
+    position: absolute;
+    left: 0;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+    position: sticky;
+    top: calc(var(--header-height) + var(--spacing-md));
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .materials-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .material-item {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    position: relative;
+  }
+
+  .material-badge {
+    position: absolute;
+    top: -10px;
+    right: var(--spacing-md);
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .material-item h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .material-item > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9375rem;
+  }
+
+  .material-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .material-item li {
+    margin-bottom: 4px;
+  }
+
+  .warranty-highlight {
+    text-align: center;
+  }
+
+  .warranty-highlight h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .warranty-highlight > .warranty-content > p {
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .warranty-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .warranty-card {
+    background-color: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+  }
+
+  .warranty-card.featured {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .warranty-years {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .warranty-card h4 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .warranty-card p {
+    color: var(--color-text-light);
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  .financing-banner {
+    background: linear-gradient(135deg, var(--color-bg-alt) 0%, #e5e7eb 100%);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    text-align: center;
+  }
+
+  .financing-content h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .financing-content p {
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-md);
+  }
+
+  @media (min-width: 992px) {
+    .intro-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+</style>

@@ -1,0 +1,274 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const woodTypes = [
+  { name: 'Cedar Siding', description: 'Natural resistance to rot and insects. Beautiful grain patterns. The classic choice.' },
+  { name: 'Redwood', description: 'Premium natural durability and rich color. Excellent for high-end homes.' },
+  { name: 'Engineered Wood (LP SmartSide)', description: 'Wood fiber technology with superior durability. Looks like wood, performs better.' },
+  { name: 'Pine/Spruce', description: 'Budget-friendly option requiring proper treatment. Good for covered areas.' },
+];
+
+const faqs = [
+  {
+    question: 'How much maintenance does wood siding require?',
+    answer: 'Natural wood siding needs periodic sealing or staining every 3-7 years depending on exposure. It should be inspected annually for signs of damage. Engineered wood requires less maintenance—similar to fiber cement.',
+  },
+  {
+    question: 'Is wood siding good for Idaho\'s climate?',
+    answer: 'Idaho\'s dry climate is actually favorable for wood siding—less moisture means less rot risk. However, sun exposure can cause fading, so proper finishing is important. Mountain areas with more moisture need extra attention.',
+  },
+  {
+    question: 'What about fire risk with wood siding?',
+    answer: 'Natural wood is combustible. In wildfire-prone areas, fire-treated wood or alternative materials may be required by code. We can advise on local requirements and fire-resistant options.',
+  },
+  {
+    question: 'Is engineered wood as good as natural wood?',
+    answer: 'Engineered wood like LP SmartSide offers better dimensional stability, resistance to moisture, and warranty protection than natural wood, while maintaining an authentic appearance. Many homeowners prefer it for these reasons.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Wood Siding Installation',
+  provider: { '@type': 'HomeAndConstructionBusiness', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+};
+---
+
+<BaseLayout
+  title="Wood Siding Installation in Boise"
+  description="Natural wood and engineered wood siding installation in Boise, Meridian, Eagle, and Garden City. Cedar, LP SmartSide, and more. Free estimates."
+  canonicalPath="/wood-siding"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="Wood Siding Installation"
+    subtitle="Nothing matches the natural beauty and warmth of wood siding. From traditional cedar to modern engineered options, we deliver stunning results."
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>Natural Beauty, Timeless Appeal</h2>
+          <p>
+            Wood siding offers a warmth and character that other materials simply can't replicate. Whether you prefer the
+            natural beauty of cedar or the enhanced durability of engineered wood, we install wood siding that transforms
+            your home's exterior.
+          </p>
+
+          <h3>Why Choose Wood Siding?</h3>
+          <ul class="benefits-list">
+            <li><strong>Authentic Beauty:</strong> Natural grain patterns and texture unmatched by synthetics.</li>
+            <li><strong>Customizable:</strong> Can be stained, painted, or left natural to weather gracefully.</li>
+            <li><strong>Eco-Friendly:</strong> Natural, renewable, and biodegradable material.</li>
+            <li><strong>Good Insulation:</strong> Wood naturally insulates better than many alternatives.</li>
+            <li><strong>Timeless Value:</strong> Quality wood siding adds character that homebuyers appreciate.</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary">Get Free Estimate</a>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2v20M2 12h20M7 7v10M17 7v10" />
+            </svg>
+            <span>Wood Siding Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Wood Siding Options</h2>
+      <div class="options-grid">
+        {
+          woodTypes.map((wood) => (
+            <div class="option-card">
+              <h3>{wood.name}</h3>
+              <p>{wood.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="comparison">
+        <h2 class="text-center">Natural vs. Engineered Wood</h2>
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <h3>Natural Cedar</h3>
+            <ul>
+              <li>✓ Authentic appearance</li>
+              <li>✓ Natural rot resistance</li>
+              <li>✓ Traditional appeal</li>
+              <li>• Requires periodic maintenance</li>
+              <li>• Variable moisture performance</li>
+              <li>• Higher material cost</li>
+            </ul>
+          </div>
+          <div class="comparison-card featured">
+            <h3>Engineered Wood</h3>
+            <ul>
+              <li>✓ Looks like real wood</li>
+              <li>✓ Superior durability</li>
+              <li>✓ Better moisture resistance</li>
+              <li>✓ Less maintenance</li>
+              <li>✓ Better warranty</li>
+              <li>✓ More consistent quality</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} title="Wood Siding FAQs" />
+
+  <CityGrid />
+
+  <CTASection
+    title="Ready for Beautiful Wood Siding?"
+    subtitle="Contact us to explore wood siding options for your home. Free consultations and estimates."
+  />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  .intro-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .intro-content h3 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+
+  .option-card {
+    background-color: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    text-align: center;
+  }
+
+  .option-card h3 {
+    color: var(--color-primary);
+    font-size: 1.0625rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .option-card p {
+    color: var(--color-text-light);
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .comparison-card {
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--color-border);
+  }
+
+  .comparison-card.featured {
+    border-color: var(--color-primary);
+    background-color: rgba(30, 64, 175, 0.05);
+  }
+
+  .comparison-card h3 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .comparison-card ul {
+    list-style: none;
+  }
+
+  .comparison-card li {
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 992px) {
+    .intro-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+</style>

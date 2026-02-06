@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import TrustBadges from '../../components/TrustBadges.astro';
+import ReviewHighlights from '../../components/ReviewHighlights.astro';
+import CTASection from '../../components/CTASection.astro';
+import { siteConfig } from '../../config/site';
+
+const city = 'Meridian';
+const state = 'Idaho';
+const fullLocation = `${city}, ${state}`;
+
+const roofingServices = [
+  { title: 'Roof Replacement', description: `Complete roof replacement for ${city} homes. Quality materials and expert installation.`, href: '/roof-replacement' },
+  { title: 'Roof Repair', description: `Fast, reliable roof repairs in ${city}. Leaks, storm damage, and more.`, href: '/roof-repair' },
+  { title: 'Storm Damage Repair', description: `Emergency storm damage repair in ${city}. Insurance claim assistance included.`, href: '/storm-damage-roof-repair' },
+];
+
+const sidingServices = [
+  { title: 'Siding Installation', description: `Transform your ${city} home with new vinyl, fiber cement, or wood siding.`, href: '/siding-installation' },
+  { title: 'Vinyl Siding', description: `Affordable, low-maintenance vinyl siding for ${city} homeowners.`, href: '/vinyl-siding' },
+  { title: 'Fiber Cement Siding', description: `Premium James Hardie fiber cement siding installation in ${city}.`, href: '/fiber-cement-siding' },
+];
+
+const localSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${siteConfig.siteUrl}/locations/meridian-id`,
+  name: `${siteConfig.siteName} - ${city}`,
+  description: `Professional roofing and siding services in ${fullLocation}. Roof replacement, repair, and siding installation.`,
+  url: `${siteConfig.siteUrl}/locations/meridian-id`,
+  telephone: siteConfig.phone,
+  areaServed: { '@type': 'City', name: city },
+};
+---
+
+<BaseLayout
+  title={`Roofing & Siding Services in ${city}`}
+  description={`Trusted roofing and siding contractor in ${fullLocation}. Roof replacement, repair, storm damage, and siding installation. Free estimates. Licensed & insured.`}
+  canonicalPath="/locations/meridian-id"
+  schema={localSchema}
+>
+  <HeroSection
+    title={`Roofing & Siding Services in ${city}, Idaho`}
+    subtitle={`${siteConfig.siteName} proudly serves ${city}—Idaho's fastest-growing city. Quality roofing and siding for your home.`}
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro">
+        <h2>Your Trusted {city} Roofing Contractor</h2>
+        <p>
+          As one of America's fastest-growing cities, {city} is home to thousands of new homes and established neighborhoods
+          that need reliable roofing and siding services. Whether your home is in a new development or an established
+          community, we provide the same quality workmanship and attention to detail.
+        </p>
+        <p>
+          We serve {city} homeowners throughout the city—from developments near The Village at {city} to established
+          neighborhoods in older {city}. Our crews know the area, understand local building codes, and deliver results
+          that last.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Roofing Services in {city}</h2>
+      <ServiceCards services={roofingServices} columns={3} />
+      <div class="services-cta">
+        <a href="/roofing" class="btn btn-outline">View All Roofing Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Siding Services in {city}</h2>
+      <ServiceCards services={sidingServices} columns={3} />
+      <div class="services-cta">
+        <a href="/siding" class="btn btn-outline">View All Siding Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="local-info">
+        <h2>Why {city} Homeowners Choose Us</h2>
+        <ul class="benefits-list">
+          <li><strong>New Construction Experience:</strong> We work with many {city} builders on new homes.</li>
+          <li><strong>HOA Familiarity:</strong> We know the requirements for {city}'s many HOA communities.</li>
+          <li><strong>Fast Growing Area:</strong> Quick scheduling despite high demand in {city}.</li>
+          <li><strong>Local References:</strong> Hundreds of satisfied {city} customers.</li>
+          <li><strong>Storm Response:</strong> Priority service for {city} storm damage emergencies.</li>
+        </ul>
+        <a href="/roof-replacement" class="btn btn-primary">Get {city} Roof Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <ReviewHighlights title={`What ${city} Homeowners Say`} />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Serving All {city} Areas</h2>
+      <div class="areas-grid">
+        <div class="area-item">Downtown Meridian</div>
+        <div class="area-item">South Meridian</div>
+        <div class="area-item">North Meridian</div>
+        <div class="area-item">Lochsa Falls</div>
+        <div class="area-item">Paramount</div>
+        <div class="area-item">Tuscany</div>
+        <div class="area-item">Spurwing</div>
+        <div class="area-item">The Village</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container text-center">
+      <h2>Nearby Service Areas</h2>
+      <p class="section-subtitle">
+        We also serve homeowners in <a href="/locations/boise-id">Boise</a>,
+        <a href="/locations/eagle-id">Eagle</a>, and <a href="/locations/garden-city-id">Garden City</a>.
+      </p>
+    </div>
+  </section>
+
+  <CTASection
+    title={`Ready to Start Your ${city} Project?`}
+    subtitle={`Contact us today for a free estimate. We'll assess your roofing or siding needs and provide transparent pricing.`}
+  />
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .services-cta {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+  }
+
+  .local-info {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .local-info h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .areas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+  }
+
+  .area-item {
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+  }
+</style>

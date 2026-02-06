@@ -1,0 +1,101 @@
+---
+import { siteConfig } from '../config/site';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  variant?: 'home' | 'page' | 'service';
+  backgroundImage?: string;
+}
+
+const {
+  title,
+  subtitle,
+  ctaText = 'Get Free Estimate',
+  ctaHref = '/contact',
+  secondaryCtaText = `Call ${siteConfig.phone}`,
+  secondaryCtaHref = `tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`,
+  variant = 'page',
+  backgroundImage = 'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=3840&q=80',
+} = Astro.props;
+---
+
+<section class={`relative overflow-hidden ${variant === 'home' ? 'lg:pt-48 lg:pb-32 pt-32 pb-20' : 'py-20 lg:py-32'}`}>
+    <!-- Background Image -->
+    <div class="absolute inset-0 w-full h-full pointer-events-none">
+        <img src={backgroundImage} alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-90" />
+        <!-- On mobile: full white overlay for readability. On desktop: fade left-to-right -->
+        <div class="absolute inset-0 bg-white/90 md:bg-transparent"></div>
+        <div class="hidden md:block absolute inset-0 bg-gradient-to-r to-transparent from-white via-white/95"></div>
+        <!-- Light overall wash to ensure contrast isn't too harsh -->
+        <div class="absolute inset-0 bg-white/10"></div>
+    </div>
+
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none mix-blend-multiply"></div>
+    
+    <!-- Gradient Mesh Overlay -->
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none mix-blend-overlay bg-yellow-200/20">
+    </div>
+
+    <div class="sm:px-6 lg:px-8 z-10 max-w-7xl mx-auto px-4 relative">
+        <div class="max-w-3xl">
+            {variant === 'home' && (
+                <div class="inline-flex items-center space-x-2 backdrop-blur-sm border rounded-full px-3 py-1 mb-8 shadow-sm bg-slate-50/80 border-slate-200/60">
+                    <span class="flex h-2 w-2 rounded-full bg-yellow-500 animate-pulse"></span>
+                    <span class="text-xs font-medium tracking-wide uppercase text-slate-600">Serving the Treasure Valley</span>
+                </div>
+            )}
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-6 drop-shadow-sm text-slate-900">
+                {title.split(',').map((part, i) => (
+                    i === 0 ? <>{part}<br /></> : <span class="text-slate-400">{part}</span>
+                ))}
+            </h1>
+
+            {subtitle && (
+                <p class="text-lg md:text-xl text-slate-500 mb-10 leading-relaxed max-w-2xl font-light">
+                    {subtitle}
+                </p>
+            )}
+
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href={ctaHref} class="inline-flex items-center justify-center transition-all hover:shadow-xl hover:-translate-y-0.5 text-sm font-medium rounded-lg px-8 py-4 shadow-lg hover:bg-slate-800 text-white bg-slate-900">
+                    {ctaText}
+                </a>
+                <a href={secondaryCtaHref} class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium rounded-lg backdrop-blur-sm border transition-all shadow-sm text-slate-700 bg-white/80 border-slate-200 hover:bg-slate-50 hover:border-slate-300">
+                    {secondaryCtaText}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {variant === 'home' && (
+        <div class="mt-20 border-y backdrop-blur-md relative z-10 border-slate-100 bg-white/60">
+            <div class="sm:px-6 lg:px-8 max-w-7xl mx-auto px-4 py-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div>
+                        <div class="text-3xl font-semibold tracking-tight text-slate-900">10+</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wide mt-1">Years Experience</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-semibold tracking-tight text-slate-900">1000+</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wide mt-1">Projects Completed</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-semibold tracking-tight text-slate-900">100%</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wide mt-1">Satisfaction</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-semibold tracking-tight text-slate-900">Local</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wide mt-1">Family Owned</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )}
+</section>

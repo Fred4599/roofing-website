@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const faqs = [
+  {
+    question: 'How long does vinyl siding last?',
+    answer: 'Quality vinyl siding lasts 20-40 years with minimal maintenance. Premium vinyl with thicker profiles tends to last longer. Idaho\'s dry climate is actually favorable for vinyl longevity.',
+  },
+  {
+    question: 'Does vinyl siding fade?',
+    answer: 'Modern vinyl siding is manufactured with UV inhibitors that resist fading. Quality brands maintain their color well for decades. We recommend premium vinyl with fade warranties for best results.',
+  },
+  {
+    question: 'Can vinyl siding be painted?',
+    answer: 'Yes, vinyl siding can be painted, though it\'s not necessary with quality products. If you want to change colors, use vinyl-safe paint in a shade similar to or lighter than the original.',
+  },
+  {
+    question: 'Is vinyl siding energy efficient?',
+    answer: 'Standard vinyl provides some insulation, but insulated vinyl siding (with foam backing) significantly improves energy efficiency. We can help you choose the right option for your goals.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Vinyl Siding Installation',
+  provider: { '@type': 'HomeAndConstructionBusiness', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+};
+---
+
+<BaseLayout
+  title="Vinyl Siding Installation in Boise"
+  description="Professional vinyl siding installation in Boise, Meridian, Eagle, and Garden City. Affordable, durable, low-maintenance. Many colors available. Free estimates."
+  canonicalPath="/vinyl-siding"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="Vinyl Siding Installation"
+    subtitle="Affordable, durable, and virtually maintenance-free. Vinyl siding is the smart choice for Treasure Valley homeowners who want great looks without the upkeep."
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>Why Choose Vinyl Siding?</h2>
+          <p>
+            Vinyl siding remains the most popular choice for Idaho homeowners—and for good reason. It offers exceptional
+            value, comes in countless colors and styles, and requires virtually no maintenance for decades.
+          </p>
+
+          <h3>Benefits of Vinyl Siding</h3>
+          <ul class="benefits-list">
+            <li><strong>Affordable:</strong> Best value for your siding investment.</li>
+            <li><strong>Low Maintenance:</strong> Never needs painting—just occasional cleaning.</li>
+            <li><strong>Durable:</strong> Resists dents, scratches, and moisture damage.</li>
+            <li><strong>Variety:</strong> Hundreds of colors and styles to match any home.</li>
+            <li><strong>Energy Options:</strong> Insulated versions improve efficiency.</li>
+            <li><strong>Easy Repairs:</strong> Individual panels can be replaced if damaged.</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary">Get Free Estimate</a>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 8h18M3 13h18M3 18h18" />
+            </svg>
+            <span>Vinyl Siding Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Vinyl Siding Styles</h2>
+      <div class="styles-grid">
+        <div class="style-card">
+          <h3>Horizontal Lap</h3>
+          <p>Classic horizontal boards in various widths. The most popular style for traditional homes.</p>
+        </div>
+        <div class="style-card">
+          <h3>Dutch Lap</h3>
+          <p>Distinctive notched profile creates shadow lines for added dimension and character.</p>
+        </div>
+        <div class="style-card">
+          <h3>Board & Batten</h3>
+          <p>Vertical panels with overlapping strips. Perfect for farmhouse and modern aesthetics.</p>
+        </div>
+        <div class="style-card">
+          <h3>Shake & Shingle</h3>
+          <p>Mimics the look of cedar shakes. Great for accents or full installation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} title="Vinyl Siding FAQs" />
+
+  <section class="section">
+    <div class="container text-center">
+      <h2>Compare Siding Options</h2>
+      <p class="section-subtitle">
+        Not sure if vinyl is right for you? Explore our <a href="/fiber-cement-siding">fiber cement</a> and
+        <a href="/wood-siding">wood siding</a> options, or <a href="/contact">contact us</a> for a consultation.
+      </p>
+    </div>
+  </section>
+
+  <CityGrid />
+
+  <CTASection
+    title="Ready for New Vinyl Siding?"
+    subtitle="Contact us for a free estimate. We'll help you choose the perfect color and style for your home."
+  />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  .intro-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .intro-content h3 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .styles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+
+  .style-card {
+    background-color: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    text-align: center;
+  }
+
+  .style-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .style-card p {
+    color: var(--color-text-light);
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 992px) {
+    .intro-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+</style>

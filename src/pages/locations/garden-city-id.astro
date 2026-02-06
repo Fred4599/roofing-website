@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import TrustBadges from '../../components/TrustBadges.astro';
+import ReviewHighlights from '../../components/ReviewHighlights.astro';
+import CTASection from '../../components/CTASection.astro';
+import { siteConfig } from '../../config/site';
+
+const city = 'Garden City';
+const state = 'Idaho';
+const fullLocation = `${city}, ${state}`;
+
+const roofingServices = [
+  { title: 'Roof Replacement', description: `Complete roof replacement for ${city} homes. Quality materials at fair prices.`, href: '/roof-replacement' },
+  { title: 'Roof Repair', description: `Fast, reliable roof repairs in ${city}. Leaks, storm damage, and more.`, href: '/roof-repair' },
+  { title: 'Storm Damage Repair', description: `Emergency storm damage repair in ${city}. Insurance claim assistance included.`, href: '/storm-damage-roof-repair' },
+];
+
+const sidingServices = [
+  { title: 'Siding Installation', description: `Transform your ${city} home with new siding. Multiple options available.`, href: '/siding-installation' },
+  { title: 'Vinyl Siding', description: `Affordable, durable vinyl siding for ${city} homeowners.`, href: '/vinyl-siding' },
+  { title: 'Siding Repair', description: `Professional siding repairs for ${city} homes. Quick turnaround.`, href: '/siding-repair' },
+];
+
+const localSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${siteConfig.siteUrl}/locations/garden-city-id`,
+  name: `${siteConfig.siteName} - ${city}`,
+  description: `Professional roofing and siding services in ${fullLocation}. Roof replacement, repair, and siding installation.`,
+  url: `${siteConfig.siteUrl}/locations/garden-city-id`,
+  telephone: siteConfig.phone,
+  areaServed: { '@type': 'City', name: city },
+};
+---
+
+<BaseLayout
+  title={`Roofing & Siding Services in ${city}`}
+  description={`Trusted roofing and siding contractor in ${fullLocation}. Roof replacement, repair, storm damage, and siding installation. Free estimates. Licensed & insured.`}
+  canonicalPath="/locations/garden-city-id"
+  schema={localSchema}
+>
+  <HeroSection
+    title={`Roofing & Siding Services in ${city}, Idaho`}
+    subtitle={`${siteConfig.siteName} provides quality roofing and siding services for ${city} homeowners. Fair prices, honest service, lasting results.`}
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro">
+        <h2>Your {city} Roofing Experts</h2>
+        <p>
+          {city}, nestled along the Boise River between Boise and Eagle, is home to a diverse mix of properties from
+          historic homes to newer developments. Whether you're on Chinden Boulevard or tucked away near the Greenbelt,
+          we provide reliable roofing and siding services tailored to your needs.
+        </p>
+        <p>
+          As a smaller community, {city} homeowners appreciate working with contractors who take the time to understand
+          their unique needs. We're not a big corporate company—we're local, we're accessible, and we stand behind our work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Roofing Services in {city}</h2>
+      <ServiceCards services={roofingServices} columns={3} />
+      <div class="services-cta">
+        <a href="/roofing" class="btn btn-outline">View All Roofing Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Siding Services in {city}</h2>
+      <ServiceCards services={sidingServices} columns={3} />
+      <div class="services-cta">
+        <a href="/siding" class="btn btn-outline">View All Siding Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="local-info">
+        <h2>Why {city} Homeowners Choose Us</h2>
+        <ul class="benefits-list">
+          <li><strong>Local & Accessible:</strong> Easy to reach, quick to respond, and always available for questions.</li>
+          <li><strong>Fair Pricing:</strong> Competitive rates without compromising on quality materials or workmanship.</li>
+          <li><strong>Older Home Experience:</strong> Familiar with the unique challenges of {city}'s historic properties.</li>
+          <li><strong>Quick Turnaround:</strong> Smaller jobs welcome—we don't prioritize by project size.</li>
+          <li><strong>Trusted Referrals:</strong> Many {city} customers come from neighbor recommendations.</li>
+        </ul>
+        <a href="/roof-replacement" class="btn btn-primary">Get {city} Roof Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <ReviewHighlights title={`What ${city} Homeowners Say`} />
+
+  <section class="section">
+    <div class="container text-center">
+      <h2>Nearby Service Areas</h2>
+      <p class="section-subtitle">
+        We also serve homeowners in <a href="/locations/boise-id">Boise</a>,
+        <a href="/locations/meridian-id">Meridian</a>, and <a href="/locations/eagle-id">Eagle</a>.
+      </p>
+    </div>
+  </section>
+
+  <CTASection
+    title={`Ready to Start Your ${city} Project?`}
+    subtitle={`Contact us today for a free estimate. Quality roofing and siding services at fair prices.`}
+  />
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .services-cta {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+  }
+
+  .local-info {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .local-info h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+  }
+</style>

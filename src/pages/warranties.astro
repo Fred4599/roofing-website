@@ -1,0 +1,330 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const warranties = [
+  {
+    title: 'Workmanship Warranty',
+    coverage: '10 Years',
+    description: 'Our labor is backed by a comprehensive 10-year workmanship warranty. If any installation defects occur, we will fix them at no charge.',
+    includes: ['Installation defects', 'Flashing issues', 'Leak repairs', 'Material handling errors'],
+  },
+  {
+    title: 'GAF Golden Pledge',
+    coverage: '50 Years',
+    description: 'As a GAF certified contractor, we offer the Golden Pledge warranty—one of the strongest in the industry with 50-year coverage.',
+    includes: ['50-year material coverage', '25-year workmanship coverage', 'Transferable to new owner', 'Wind warranty included'],
+  },
+  {
+    title: 'Owens Corning Platinum',
+    coverage: 'Lifetime',
+    description: 'Owens Corning Preferred Contractors can offer their Platinum Protection warranty with lifetime limited coverage.',
+    includes: ['Lifetime limited material', '10-year workmanship', 'Full system warranty', 'Labor included'],
+  },
+  {
+    title: 'James Hardie Siding',
+    coverage: '30 Years',
+    description: 'James Hardie fiber cement siding comes with a 30-year non-prorated warranty covering defects and finish.',
+    includes: ['30-year substrate warranty', '15-year ColorPlus finish', 'Non-prorated coverage', 'Transferable warranty'],
+  },
+];
+---
+
+<BaseLayout
+  title="Warranty Information"
+  description="Learn about our comprehensive warranties for roofing and siding projects. 10-year workmanship plus manufacturer warranties from GAF, Owens Corning, and James Hardie."
+  canonicalPath="/warranties"
+>
+  <HeroSection
+    title="Our Warranty Coverage"
+    subtitle="We stand behind our work with comprehensive warranties that protect your investment. Quality materials. Expert installation. Lasting peace of mind."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="warranty-intro text-center">
+        <h2>Protection You Can Count On</h2>
+        <p>
+          When you choose {siteConfig.siteName}, you're not just getting quality roofing and siding—you're getting
+          lasting protection. Our warranties ensure your investment is protected for decades to come.
+        </p>
+      </div>
+
+      <div class="warranty-grid">
+        {
+          warranties.map((warranty) => (
+            <div class="warranty-card">
+              <div class="warranty-header">
+                <span class="warranty-coverage">{warranty.coverage}</span>
+                <h3>{warranty.title}</h3>
+              </div>
+              <p class="warranty-description">{warranty.description}</p>
+              <div class="warranty-includes">
+                <h4>Coverage Includes:</h4>
+                <ul>
+                  {warranty.includes.map((item) => (
+                    <li>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="why-warranties">
+        <div class="why-content">
+          <h2>Why Our Warranties Matter</h2>
+          <p>
+            Not all roofing warranties are created equal. Many contractors offer minimal coverage that leaves homeowners
+            unprotected when problems arise. Our approach is different.
+          </p>
+          <ul class="why-list">
+            <li>
+              <strong>Certified Installations:</strong> As certified installers for major manufacturers, we can offer extended
+              warranties that typical contractors cannot.
+            </li>
+            <li>
+              <strong>Local Accountability:</strong> We're a local company that will be here when you need us. We don't disappear
+              after the job is done.
+            </li>
+            <li>
+              <strong>Documented Work:</strong> Every project is photographed and documented, making warranty claims straightforward
+              if ever needed.
+            </li>
+            <li>
+              <strong>Transferable Options:</strong> Many of our warranties transfer to new owners, adding value when you
+              sell your home.
+            </li>
+          </ul>
+        </div>
+        <div class="warranty-badge">
+          <div class="badge-content">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span class="badge-years">10+</span>
+            <span class="badge-text">Years of Workmanship Warranty</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Warranty Registration</h2>
+      <div class="registration-info">
+        <p>
+          After your project is complete, we handle warranty registration on your behalf. You'll receive documentation
+          of all applicable warranties, including:
+        </p>
+        <ul>
+          <li>Manufacturer warranty certificates</li>
+          <li>Our workmanship warranty document</li>
+          <li>Project photos for your records</li>
+          <li>Material specifications used</li>
+          <li>Installation date and crew information</li>
+        </ul>
+        <p>
+          Keep these documents in a safe place. If you ever need to make a warranty claim, contact us and we'll guide
+          you through the process.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Invest in Quality, Protected by Warranty"
+    subtitle="Get the peace of mind that comes with comprehensive warranty coverage. Contact us for your free estimate."
+  />
+</BaseLayout>
+
+<style>
+  .warranty-intro {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .warranty-intro h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .warranty-intro p {
+    color: var(--color-text-light);
+  }
+
+  .warranty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .warranty-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    transition: all var(--transition);
+  }
+
+  .warranty-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .warranty-header {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .warranty-coverage {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-text-inverse);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .warranty-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .warranty-description {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.9375rem;
+  }
+
+  .warranty-includes h4 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .warranty-includes ul {
+    list-style: none;
+  }
+
+  .warranty-includes li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: 4px;
+    font-size: 0.9375rem;
+  }
+
+  .warranty-includes svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .why-warranties {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+  }
+
+  .why-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .why-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .why-list {
+    list-style: none;
+  }
+
+  .why-list li {
+    margin-bottom: var(--spacing-sm);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .why-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .warranty-badge {
+    display: flex;
+    justify-content: center;
+  }
+
+  .badge-content {
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-text-inverse);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    max-width: 300px;
+  }
+
+  .badge-content svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .badge-years {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .badge-text {
+    font-size: 1.125rem;
+  }
+
+  .registration-info {
+    max-width: 700px;
+    margin: var(--spacing-lg) auto 0;
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+  }
+
+  .registration-info p {
+    color: var(--color-text-light);
+  }
+
+  .registration-info ul {
+    margin: var(--spacing-md) 0;
+    padding-left: 1.5rem;
+  }
+
+  .registration-info li {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  @media (min-width: 992px) {
+    .why-warranties {
+      grid-template-columns: 1fr auto;
+    }
+  }
+</style>

@@ -1,0 +1,323 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const repairTypes = [
+  {
+    title: 'Leak Repairs',
+    description: 'Fast diagnosis and permanent leak fixes. We find the source and repair it right the first time.',
+  },
+  {
+    title: 'Shingle Replacement',
+    description: 'Missing, cracked, or blown-off shingles replaced to match your existing roof as closely as possible.',
+  },
+  {
+    title: 'Flashing Repairs',
+    description: 'Chimney, vent, and valley flashing repairs to prevent water intrusion at vulnerable points.',
+  },
+  {
+    title: 'Storm Damage Repairs',
+    description: 'Wind, hail, and debris damage repaired quickly. We work with insurance on storm damage claims.',
+  },
+  {
+    title: 'Ventilation Issues',
+    description: 'Ridge vent, soffit vent, and attic ventilation repairs to prevent moisture and heat buildup.',
+  },
+  {
+    title: 'Gutter & Fascia Repairs',
+    description: 'Damaged gutters and fascia board repairs to complete your roof system.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'How quickly can you repair my roof?',
+    answer: 'For most repairs, we can schedule within 1-3 days. Emergency repairs for active leaks are prioritized—call us and we\'ll do our best to help same-day. Repair visits typically take 1-4 hours depending on complexity.',
+  },
+  {
+    question: 'How much does a roof repair cost?',
+    answer: 'Minor repairs like replacing a few shingles typically cost $200-$500. More extensive repairs like flashing work or larger damaged areas range from $500-$1,500+. We provide free estimates before any work begins.',
+  },
+  {
+    question: 'Should I repair or replace my roof?',
+    answer: 'We\'ll give you an honest assessment. Generally, if damage is localized and your roof is under 15 years old, repair makes sense. If damage is widespread, your roof is 20+ years old, or you\'re frequently repairing, replacement is more cost-effective.',
+  },
+  {
+    question: 'Do you warranty roof repairs?',
+    answer: 'Yes, all our repairs include a workmanship warranty. We stand behind our work and will return if any issues arise from our repairs. The warranty period varies based on repair type.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Roof Repair',
+  provider: { '@type': 'RoofingContractor', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+  description: 'Professional roof repair services in Boise, Idaho. Fast response for leaks, storm damage, and all roofing issues.',
+};
+---
+
+<BaseLayout
+  title="Roof Repair Services in Boise"
+  description="Fast, reliable roof repair in Boise, Meridian, Eagle, and Garden City. Leak repairs, storm damage, shingle replacement. Same-week service available. Free estimates."
+  canonicalPath="/roof-repair"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="Roof Repair Services"
+    subtitle="Don't let a small problem become a big expense. Our experienced team provides fast, reliable roof repairs for Treasure Valley homeowners."
+    ctaText="Get Repair Estimate"
+    ctaHref="/contact"
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro text-center">
+        <h2>Professional Roof Repairs You Can Trust</h2>
+        <p>
+          Whether it's a minor leak or significant storm damage, we diagnose the problem accurately and repair it right
+          the first time. Our goal is to extend your roof's life while protecting your home.
+        </p>
+      </div>
+
+      <div class="repair-grid">
+        {
+          repairTypes.map((repair) => (
+            <div class="repair-card">
+              <h3>{repair.title}</h3>
+              <p>{repair.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="two-column">
+        <div class="column-content">
+          <h2>Signs You Need Roof Repair</h2>
+          <p>Catching problems early saves money and prevents interior damage. Watch for these warning signs:</p>
+          <ul class="signs-list">
+            <li>Water stains on ceilings or walls</li>
+            <li>Missing, cracked, or curling shingles</li>
+            <li>Granules accumulating in gutters</li>
+            <li>Daylight visible through roof boards</li>
+            <li>Higher than normal energy bills</li>
+            <li>Moss or algae growth</li>
+            <li>Damaged or missing flashing</li>
+            <li>Sagging areas on roof surface</li>
+          </ul>
+          <p>
+            <strong>Don't wait for a small issue to become a costly problem.</strong> Contact us for a free inspection.
+          </p>
+          <a href="/contact" class="btn btn-primary">Schedule Inspection</a>
+        </div>
+        <div class="column-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11 4H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-4M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+            <span>Repair Work Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="emergency-banner">
+        <div class="emergency-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <div class="emergency-content">
+          <h3>Emergency Roof Repair</h3>
+          <p>
+            Active leak or storm damage? Call us now. We prioritize emergency repairs and will do our best to help
+            same-day.
+          </p>
+        </div>
+        <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`} class="btn btn-secondary btn-lg">
+          Call {siteConfig.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} title="Roof Repair FAQs" />
+
+  <section class="section">
+    <div class="container text-center">
+      <h2>Need More Than a Repair?</h2>
+      <p class="section-subtitle">
+        If your roof is beyond repair, we offer complete <a href="/roof-replacement">roof replacement services</a> with
+        quality materials and comprehensive warranties.
+      </p>
+      <a href="/roof-replacement" class="btn btn-outline">Learn About Roof Replacement</a>
+    </div>
+  </section>
+
+  <CityGrid />
+
+  <CTASection title="Get Your Roof Fixed Right" subtitle="Contact us for a free repair estimate. Fast response, quality work, and honest pricing." />
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .intro p {
+    color: var(--color-text-light);
+  }
+
+  .repair-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .repair-card {
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .repair-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .repair-card p {
+    color: var(--color-text-light);
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+  }
+
+  .column-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .column-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .signs-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+    column-count: 1;
+  }
+
+  .signs-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .signs-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: 700;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .emergency-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--color-accent);
+  }
+
+  .emergency-icon {
+    width: 56px;
+    height: 56px;
+    color: var(--color-accent);
+  }
+
+  .emergency-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .emergency-content h3 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .emergency-content p {
+    margin: 0;
+    max-width: 500px;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+    max-width: 500px;
+    margin: 0 auto var(--spacing-md);
+  }
+
+  @media (min-width: 768px) {
+    .signs-list {
+      column-count: 2;
+    }
+
+    .emergency-banner {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    .emergency-content {
+      flex: 1;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .two-column {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

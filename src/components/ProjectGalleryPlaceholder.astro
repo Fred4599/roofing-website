@@ -1,0 +1,112 @@
+---
+interface Project {
+  title: string;
+  location: string;
+  category: 'roofing' | 'siding' | 'both';
+  description?: string;
+}
+
+interface Props {
+  projects?: Project[];
+  title?: string;
+  limit?: number;
+  showViewAll?: boolean;
+}
+
+const defaultProjects: Project[] = [
+  {
+    title: 'Complete Roof Replacement',
+    location: 'Boise, ID',
+    category: 'roofing',
+    description: 'Full tear-off and installation of architectural shingles',
+  },
+  {
+    title: 'Storm Damage Repair',
+    location: 'Meridian, ID',
+    category: 'roofing',
+    description: 'Emergency roof repair after severe hailstorm',
+  },
+  {
+    title: 'Vinyl Siding Installation',
+    location: 'Eagle, ID',
+    category: 'siding',
+    description: 'New vinyl siding installation with insulation',
+  },
+  {
+    title: 'Metal Roof Installation',
+    location: 'Garden City, ID',
+    category: 'roofing',
+    description: 'Standing seam metal roof installation',
+  },
+  {
+    title: 'Fiber Cement Siding',
+    location: 'Boise, ID',
+    category: 'siding',
+    description: 'James Hardie fiber cement siding installation',
+  },
+  {
+    title: 'Roof & Siding Project',
+    location: 'Meridian, ID',
+    category: 'both',
+    description: 'Complete exterior renovation with new roof and siding',
+  },
+];
+
+const { projects = defaultProjects, title = 'Recent Projects', limit = 6, showViewAll = true } = Astro.props;
+
+const displayProjects = projects.slice(0, limit);
+
+const categoryColors: Record<string, string> = {
+  roofing: 'bg-slate-900 text-white',
+  siding: 'bg-yellow-400 text-slate-900',
+  both: 'bg-yellow-600 text-white',
+};
+---
+
+<section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16 text-center">
+            <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl text-slate-900">{title}</h2>
+            <p class="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">Browse our recent roofing and siding projects throughout the Treasure Valley.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayProjects.map((project, index) => (
+                <article class="group rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden transition-all hover:shadow-md hover:-translate-y-1">
+                    <div class="relative aspect-[4/3] bg-slate-100">
+                        <div class="flex flex-col items-center justify-center h-full text-slate-400 gap-2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12 opacity-50">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <path d="M21 15l-5-5L5 21" />
+                            </svg>
+                            <span class="text-sm">Project Photo {index + 1}</span>
+                        </div>
+                        <span class={`absolute top-3 left-3 px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded ${categoryColors[project.category] || 'bg-slate-900 text-white'}`}>
+                            {project.category === 'both' ? 'Roof & Siding' : project.category}
+                        </span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-1">{project.title}</h3>
+                        <p class="flex items-center gap-1 text-sm text-slate-500 mb-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0">
+                                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            {project.location}
+                        </p>
+                        {project.description && <p class="text-sm text-slate-500">{project.description}</p>}
+                    </div>
+                </article>
+            ))}
+        </div>
+
+        {showViewAll && (
+            <div class="mt-12 text-center">
+                <a href="/gallery" class="inline-flex items-center text-sm font-medium transition-colors text-slate-900 hover:text-yellow-600">
+                    View all projects <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24" class="iconify ml-1"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
+                </a>
+            </div>
+        )}
+    </div>
+</section>

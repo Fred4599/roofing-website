@@ -1,0 +1,384 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const reviews = [
+  {
+    author: 'Michael S.',
+    rating: 5,
+    text: 'Treasure Valley Roofing replaced our entire roof after a hailstorm. They handled the insurance claim and made the whole process stress-free. The crew was professional, showed up on time, and cleaned up everything. Highly recommend them for any roofing work in Boise.',
+    date: '2024-09-15',
+    location: 'Boise, ID',
+    service: 'Roof Replacement',
+  },
+  {
+    author: 'Jennifer L.',
+    rating: 5,
+    text: 'Great experience from start to finish. John came out for the estimate and was incredibly thorough in explaining our options. The crew was professional, cleaned up completely, and our new roof looks amazing. Fair pricing compared to other contractors we quoted.',
+    date: '2024-08-22',
+    location: 'Meridian, ID',
+    service: 'Roof Replacement',
+  },
+  {
+    author: 'Robert D.',
+    rating: 5,
+    text: "We needed emergency roof repair after wind damage and they came out the next day. The repair work was excellent and they gave us an honest assessment—didn't try to upsell us on a full replacement when a repair would do. Won't hesitate to call them again.",
+    date: '2024-07-10',
+    location: 'Eagle, ID',
+    service: 'Roof Repair',
+  },
+  {
+    author: 'Sarah M.',
+    rating: 5,
+    text: 'Had vinyl siding installed on our home and the transformation is incredible. The team was friendly, punctual, and took great care to protect our landscaping during the project. The finished product exceeded our expectations.',
+    date: '2024-06-05',
+    location: 'Garden City, ID',
+    service: 'Siding Installation',
+  },
+  {
+    author: 'David K.',
+    rating: 5,
+    text: "After getting quotes from five different companies, we chose Treasure Valley Roofing. They weren't the cheapest, but they offered the best value with quality materials and a solid warranty. Two years later, our roof still looks brand new.",
+    date: '2024-05-18',
+    location: 'Boise, ID',
+    service: 'Roof Replacement',
+  },
+  {
+    author: 'Lisa R.',
+    rating: 5,
+    text: 'The insurance claim process can be overwhelming, but these guys made it simple. They documented everything, met with the adjuster, and made sure we got fair coverage. The new roof was installed quickly and professionally.',
+    date: '2024-04-22',
+    location: 'Meridian, ID',
+    service: 'Insurance Claim',
+  },
+  {
+    author: 'Tom B.',
+    rating: 5,
+    text: 'We had James Hardie fiber cement siding installed last fall. The crew worked through some cold weather but never cut corners. The attention to detail around our windows and doors was impressive. Love the new look of our home.',
+    date: '2024-03-15',
+    location: 'Eagle, ID',
+    service: 'Fiber Cement Siding',
+  },
+  {
+    author: 'Amanda C.',
+    rating: 5,
+    text: 'Responsive, professional, and fairly priced. They repaired a leak that two other companies couldn\'t figure out. Fixed it right the first time and haven\'t had any issues since. Definitely my go-to roofer now.',
+    date: '2024-02-28',
+    location: 'Boise, ID',
+    service: 'Roof Repair',
+  },
+];
+
+const averageRating = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+
+const reviewsSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: siteConfig.siteName,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: averageRating.toFixed(1),
+    reviewCount: reviews.length,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  review: reviews.map((review) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: review.author },
+    reviewRating: { '@type': 'Rating', ratingValue: review.rating, bestRating: 5 },
+    reviewBody: review.text,
+    datePublished: review.date,
+  })),
+};
+
+function renderStars(rating: number): string {
+  return Array(rating)
+    .fill('<svg class="star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>')
+    .join('');
+}
+---
+
+<BaseLayout
+  title="Customer Reviews"
+  description="Read reviews from Treasure Valley homeowners about their roofing and siding projects. 5-star rated service in Boise, Meridian, Eagle, and Garden City."
+  canonicalPath="/reviews"
+  schema={reviewsSchema}
+>
+  <HeroSection
+    title="What Our Customers Say"
+    subtitle="Don't just take our word for it. See why hundreds of Treasure Valley homeowners trust us with their roofing and siding projects."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="reviews-summary">
+        <div class="rating-badge">
+          <span class="rating-number">{averageRating.toFixed(1)}</span>
+          <div class="rating-stars" set:html={renderStars(5)} />
+          <span class="rating-count">{reviews.length} Reviews</span>
+        </div>
+        <div class="rating-breakdown">
+          <p>
+            Our customers consistently rate us 5 stars for quality workmanship, transparent pricing, and excellent
+            communication. We're proud to have earned the trust of homeowners across Boise, Meridian, Eagle, and Garden
+            City.
+          </p>
+          <a href="/contact" class="btn btn-primary">Get Your Free Estimate</a>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        {
+          reviews.map((review) => (
+            <article class="review-card">
+              <div class="review-header">
+                <div class="review-stars" set:html={renderStars(review.rating)} />
+                <span class="review-service">{review.service}</span>
+              </div>
+              <blockquote class="review-text">"{review.text}"</blockquote>
+              <footer class="review-footer">
+                <div class="review-author-info">
+                  <span class="review-author">{review.author}</span>
+                  <span class="review-location">{review.location}</span>
+                </div>
+                <time class="review-date" datetime={review.date}>
+                  {new Date(review.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+                </time>
+              </footer>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="review-platforms">
+        <h2>Find Us On</h2>
+        <div class="platforms-grid">
+          <a href={siteConfig.socialLinks.google} class="platform-link" target="_blank" rel="noopener">
+            <div class="platform-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                />
+                <path
+                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                />
+                <path
+                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                />
+                <path
+                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                />
+              </svg>
+            </div>
+            <span>Google Reviews</span>
+          </a>
+          <a href={siteConfig.socialLinks.facebook} class="platform-link" target="_blank" rel="noopener">
+            <div class="platform-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </div>
+            <span>Facebook Reviews</span>
+          </a>
+          <div class="platform-link">
+            <div class="platform-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                />
+              </svg>
+            </div>
+            <span>BBB Accredited</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to Join Our Happy Customers?"
+    subtitle="Experience the quality and service that has earned us 5-star reviews across the Treasure Valley."
+  />
+</BaseLayout>
+
+<style>
+  .reviews-summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-lg);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    align-items: center;
+  }
+
+  .rating-badge {
+    text-align: center;
+  }
+
+  .rating-number {
+    display: block;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .rating-stars {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin: var(--spacing-xs) 0;
+  }
+
+  .rating-stars :global(.star) {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-accent);
+  }
+
+  .rating-count {
+    color: var(--color-text-light);
+    font-size: 0.9375rem;
+  }
+
+  .rating-breakdown p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .review-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  :global(.star) {
+    width: 18px;
+    height: 18px;
+    fill: var(--color-accent);
+  }
+
+  .review-service {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-primary);
+    background-color: rgba(30, 64, 175, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .review-text {
+    font-style: normal;
+    color: var(--color-text);
+    line-height: 1.7;
+    margin: 0 0 var(--spacing-md);
+  }
+
+  .review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 0.875rem;
+  }
+
+  .review-author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-author {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .review-location {
+    color: var(--color-text-light);
+  }
+
+  .review-date {
+    color: var(--color-text-light);
+  }
+
+  .review-platforms {
+    text-align: center;
+  }
+
+  .review-platforms h2 {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .platforms-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+  }
+
+  .platform-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .platform-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .platform-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .platform-logo svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .reviews-summary {
+      grid-template-columns: auto 1fr;
+    }
+
+    .rating-badge {
+      padding-right: var(--spacing-lg);
+      border-right: 1px solid var(--color-border);
+    }
+  }
+</style>

@@ -1,0 +1,274 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const roofingServices = [
+  {
+    title: 'Roof Replacement',
+    description: 'Complete roof replacement with quality materials and expert installation. Our most popular service for Boise homeowners.',
+    href: '/roof-replacement',
+  },
+  {
+    title: 'Roof Repair',
+    description: 'Fast, reliable repairs for leaks, missing shingles, and storm damage. Same-week service available.',
+    href: '/roof-repair',
+  },
+  {
+    title: 'New Roof Installation',
+    description: 'New construction roofing services. We work with builders and homeowners on custom homes.',
+    href: '/new-roof-installation',
+  },
+  {
+    title: 'Metal Roofing',
+    description: 'Durable standing seam and metal shingle options. Ideal for Idaho weather and lasting 50+ years.',
+    href: '/metal-roofing',
+  },
+  {
+    title: 'Storm Damage Repair',
+    description: 'Emergency storm damage assessment and repair. We work directly with insurance companies.',
+    href: '/storm-damage-roof-repair',
+  },
+  {
+    title: 'Insurance Roof Claims',
+    description: 'Expert assistance with insurance claims. We document damage and work with adjusters on your behalf.',
+    href: '/insurance-roof-claims',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Roofing Services',
+  provider: {
+    '@type': 'RoofingContractor',
+    name: siteConfig.siteName,
+  },
+  areaServed: siteConfig.serviceAreas.map((area) => ({
+    '@type': 'City',
+    name: area.name,
+  })),
+  description: 'Professional roofing services including roof replacement, repair, metal roofing, and storm damage repair in the Treasure Valley.',
+};
+---
+
+<BaseLayout
+  title="Roofing Services"
+  description="Professional roofing services in Boise, Meridian, Eagle, and Garden City. Roof replacement, repair, metal roofing, and storm damage specialists. Free estimates."
+  canonicalPath="/roofing"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="Professional Roofing Services in the Treasure Valley"
+    subtitle="From roof replacements to emergency repairs, we provide comprehensive roofing solutions for Boise-area homeowners. Quality materials, expert installation, and warranties you can trust."
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl text-slate-900">Our Roofing Services</h2>
+        <p class="mt-4 text-lg text-slate-500">
+          Whether you need a complete roof replacement or a simple repair, our experienced team delivers quality
+          workmanship on every project.
+        </p>
+      </div>
+
+      <ServiceCards services={roofingServices} columns={3} />
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <h2 class="text-3xl font-semibold tracking-tight text-slate-900 mb-6">Why Choose Us for Your Roofing Project?</h2>
+          <p class="text-slate-500 mb-6">
+            Choosing the right roofing contractor is crucial for protecting your home. Here's why Treasure Valley
+            homeowners trust us:
+          </p>
+          <ul class="space-y-3 mb-8">
+            {[
+              { bold: 'Local Expertise:', text: "We understand Idaho's unique weather challenges." },
+              { bold: 'Certified Installers:', text: 'GAF and Owens Corning certified with extended warranties.' },
+              { bold: 'Transparent Pricing:', text: 'Detailed estimates with no hidden fees.' },
+              { bold: 'Quality Materials:', text: 'Premium shingles from trusted manufacturers.' },
+              { bold: 'Clean Job Sites:', text: 'We protect your property and clean up thoroughly.' },
+              { bold: 'Insurance Experts:', text: 'We handle paperwork and work with your insurance.' },
+            ].map((item) => (
+              <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400 mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span class="text-sm text-slate-600"><strong class="text-slate-900">{item.bold}</strong> {item.text}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="/roof-replacement" class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium rounded-lg shadow-lg bg-slate-900 text-white hover:bg-slate-800 transition-all">Learn About Roof Replacement</a>
+        </div>
+        <div>
+          <div class="aspect-[4/3] bg-slate-100 rounded-2xl flex flex-col items-center justify-center text-slate-400 gap-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-16 h-16 opacity-50">
+              <path d="M3 21h18M3 21V10l9-7 9 7v11M9 21V12h6v9" />
+            </svg>
+            <span class="text-sm">Roofing Project Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="materials-section">
+        <h2 class="text-center">Roofing Materials We Install</h2>
+        <div class="materials-grid">
+          <div class="material-card">
+            <h3>Asphalt Shingles</h3>
+            <p>The most popular choice for Idaho homes. Durable, affordable, and available in many styles and colors.</p>
+            <ul>
+              <li>GAF Timberline HDZ</li>
+              <li>Owens Corning Duration</li>
+              <li>CertainTeed Landmark</li>
+            </ul>
+          </div>
+          <div class="material-card">
+            <h3>Metal Roofing</h3>
+            <p>Premium durability lasting 50+ years. Excellent for Idaho snow shedding and energy efficiency.</p>
+            <ul>
+              <li>Standing Seam</li>
+              <li>Metal Shingles</li>
+              <li>Corrugated Panels</li>
+            </ul>
+          </div>
+          <div class="material-card">
+            <h3>Specialty Options</h3>
+            <p>For unique homes or specific requirements, we offer alternative roofing solutions.</p>
+            <ul>
+              <li>Synthetic Slate</li>
+              <li>Cedar Shake</li>
+              <li>Flat Roof Systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CityGrid
+    title="Roofing Services Throughout the Treasure Valley"
+    description="We serve homeowners in Boise and surrounding communities with professional roofing services."
+  />
+
+  <CTASection
+    title="Need a Roofing Expert?"
+    subtitle="Contact us today for a free roof inspection and estimate. We'll assess your needs and provide honest recommendations."
+  />
+</BaseLayout>
+
+<style>
+  .section-intro {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .section-intro p {
+    color: var(--color-text-light);
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+  }
+
+  .column-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .column-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+  }
+
+  .material-card {
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+  }
+
+  .material-card h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+  }
+
+  .material-card p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9375rem;
+  }
+
+  .material-card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .material-card li {
+    margin-bottom: 4px;
+  }
+
+  @media (min-width: 992px) {
+    .two-column {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

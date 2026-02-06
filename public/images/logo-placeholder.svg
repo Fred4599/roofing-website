@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 50" fill="none">
+  <rect width="180" height="50" rx="4" fill="#f3f4f6"/>
+  <path d="M15 35V20L25 12L35 20V35H15Z" stroke="#1e40af" stroke-width="2" fill="none"/>
+  <path d="M20 35V25H30V35" stroke="#1e40af" stroke-width="2" fill="none"/>
+  <text x="45" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1e40af">
+    TV Roofing
+  </text>
+</svg>

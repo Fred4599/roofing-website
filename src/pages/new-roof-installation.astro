@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'New Roof Installation',
+  provider: { '@type': 'RoofingContractor', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+};
+---
+
+<BaseLayout
+  title="New Roof Installation in Boise"
+  description="New construction roofing services in Boise, Meridian, Eagle, and Garden City. Expert installation for custom homes and new builds. Free estimates."
+  canonicalPath="/new-roof-installation"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="New Roof Installation"
+    subtitle="Building a new home in the Treasure Valley? Partner with experienced roofing professionals for quality installation that protects your investment."
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>New Construction Roofing Experts</h2>
+          <p>
+            Whether you're a homeowner building your dream home or a contractor needing a reliable roofing partner, we
+            deliver quality new roof installations on time and on budget.
+          </p>
+          <p>
+            We work closely with builders throughout the Treasure Valley, providing dependable roofing services for
+            custom homes, spec homes, and development projects of all sizes.
+          </p>
+
+          <h3>Why Builders Choose Us</h3>
+          <ul class="benefits-list">
+            <li><strong>Reliable Scheduling:</strong> We show up when promised and meet deadlines.</li>
+            <li><strong>Quality Installation:</strong> Certified installers following manufacturer specifications.</li>
+            <li><strong>Material Expertise:</strong> We help select the right roofing system for each project.</li>
+            <li><strong>Clean Job Sites:</strong> We maintain organized, safe work areas.</li>
+            <li><strong>Warranty Support:</strong> Extended manufacturer warranties available.</li>
+            <li><strong>Competitive Pricing:</strong> Fair pricing without compromising quality.</li>
+          </ul>
+
+          <a href="/contact" class="btn btn-primary">Request a Quote</a>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 21h18M3 21V10l9-7 9 7v11M9 21V12h6v9" />
+            </svg>
+            <span>New Construction Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">New Construction Roofing Options</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>Asphalt Shingles</h3>
+          <p>The most popular choice for new homes. Wide variety of colors and styles to complement any architecture.</p>
+          <ul>
+            <li>Cost-effective</li>
+            <li>25-50 year warranties</li>
+            <li>Many color options</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>Metal Roofing</h3>
+          <p>Premium durability and modern aesthetics. Ideal for contemporary and mountain-style homes.</p>
+          <ul>
+            <li>50+ year lifespan</li>
+            <li>Energy efficient</li>
+            <li>Low maintenance</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>Specialty Materials</h3>
+          <p>Cedar shake, synthetic slate, and other specialty options for unique architectural designs.</p>
+          <ul>
+            <li>Distinctive appearance</li>
+            <li>Premium quality</li>
+            <li>Custom solutions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="builder-cta">
+        <h2>Builders & Contractors</h2>
+        <p>
+          Looking for a reliable roofing subcontractor? We offer competitive pricing, dependable scheduling, and quality
+          workmanship. Let's discuss your next project.
+        </p>
+        <a href="/contact" class="btn btn-primary">Partner With Us</a>
+      </div>
+    </div>
+  </section>
+
+  <CityGrid
+    title="New Construction Roofing Throughout the Valley"
+    description="Serving builders and homeowners in Boise, Meridian, Eagle, Garden City, and surrounding areas."
+  />
+
+  <CTASection
+    title="Building a New Home?"
+    subtitle="Contact us to discuss roofing options for your new construction project. Free consultations and competitive quotes."
+  />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  .intro-content p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content h3 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+  }
+
+  .option-card {
+    background-color: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+  }
+
+  .option-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .option-card > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .option-card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .builder-cta {
+    text-align: center;
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+  }
+
+  .builder-cta h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .builder-cta p {
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-md);
+  }
+
+  @media (min-width: 992px) {
+    .intro-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+</style>

@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const faqs = [
+  {
+    question: 'What is fiber cement siding?',
+    answer: 'Fiber cement is made from cement, sand, and cellulose fibers. This combination creates an extremely durable material that resists rot, fire, pests, and weather damage while looking like real wood.',
+  },
+  {
+    question: 'How long does James Hardie siding last?',
+    answer: 'James Hardie fiber cement siding typically lasts 30-50 years with proper installation and minimal maintenance. The substrate has a 30-year warranty, and ColorPlus finishes are warranted for 15 years.',
+  },
+  {
+    question: 'Is fiber cement worth the extra cost?',
+    answer: 'For many homeowners, yes. Fiber cement costs more upfront than vinyl but lasts significantly longer, maintains value better, and offers superior protection. It\'s particularly worthwhile if you want the look of wood without the maintenance.',
+  },
+  {
+    question: 'Does fiber cement require painting?',
+    answer: 'James Hardie ColorPlus comes pre-finished with baked-on color that lasts 15+ years. Primed products require painting after installation. Either way, fiber cement holds paint better than wood and needs repainting less frequently.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Fiber Cement Siding Installation',
+  provider: { '@type': 'HomeAndConstructionBusiness', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+};
+---
+
+<BaseLayout
+  title="Fiber Cement Siding Installation in Boise"
+  description="James Hardie fiber cement siding installation in Boise, Meridian, Eagle, and Garden City. Certified installers. 30-year warranty. Premium durability. Free estimates."
+  canonicalPath="/fiber-cement-siding"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="James Hardie Fiber Cement Siding"
+    subtitle="Premium protection with authentic wood beauty. We're certified James Hardie installers delivering superior results for Treasure Valley homes."
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>The Premium Choice for Idaho Homes</h2>
+          <p>
+            James Hardie fiber cement siding is the gold standard in exterior cladding. It combines the beauty of natural
+            wood with superior durability, fire resistance, and protection against Idaho's climate extremes.
+          </p>
+          <p>
+            As certified James Hardie Elite Preferred contractors, we install fiber cement to manufacturer specifications,
+            ensuring you receive the full warranty protection and lasting performance these products are known for.
+          </p>
+
+          <h3>Why Choose Fiber Cement?</h3>
+          <ul class="benefits-list">
+            <li><strong>Exceptional Durability:</strong> 30-50 year lifespan with minimal maintenance.</li>
+            <li><strong>Fire Resistant:</strong> Non-combustible—critical for wildfire-prone areas.</li>
+            <li><strong>Pest Proof:</strong> Won't rot, warp, or attract termites or woodpeckers.</li>
+            <li><strong>Authentic Appearance:</strong> Looks like real wood without the upkeep.</li>
+            <li><strong>Color Retention:</strong> ColorPlus technology resists fading for 15+ years.</li>
+            <li><strong>Increased Home Value:</strong> Premium siding that appraisers and buyers recognize.</li>
+          </ul>
+
+          <div class="certification-badge">
+            <strong>James Hardie Elite Preferred Contractor</strong>
+            <p>Factory-trained and certified for optimal installation and warranty coverage.</p>
+          </div>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+            </svg>
+            <span>James Hardie Siding Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">James Hardie Product Lines</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <h3>HardiePlank Lap Siding</h3>
+          <p>America's most popular siding. Classic horizontal lap in multiple widths and textures.</p>
+        </div>
+        <div class="product-card">
+          <h3>HardieShingle Siding</h3>
+          <p>Cedar shake appearance without the maintenance. Perfect for accents or full coverage.</p>
+        </div>
+        <div class="product-card">
+          <h3>HardiePanel Vertical</h3>
+          <p>Smooth or textured panels for modern and contemporary designs.</p>
+        </div>
+        <div class="product-card">
+          <h3>HardieTrim Boards</h3>
+          <p>Durable trim that completes the look and resists moisture damage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="warranty-info">
+        <h2>Industry-Leading Warranty</h2>
+        <div class="warranty-grid">
+          <div class="warranty-item">
+            <span class="warranty-years">30</span>
+            <span class="warranty-label">Year Substrate Warranty</span>
+          </div>
+          <div class="warranty-item">
+            <span class="warranty-years">15</span>
+            <span class="warranty-label">Year ColorPlus Finish</span>
+          </div>
+        </div>
+        <p>
+          When installed by certified contractors like us, James Hardie products come with comprehensive warranty
+          protection that covers both materials and workmanship.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} title="Fiber Cement Siding FAQs" />
+
+  <CityGrid />
+
+  <CTASection
+    title="Upgrade to James Hardie Siding"
+    subtitle="Contact us for a free consultation. We'll help you explore colors, textures, and styles for your home."
+  />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  .intro-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content h3 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .certification-badge {
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .certification-badge strong {
+    color: var(--color-primary);
+  }
+
+  .certification-badge p {
+    color: var(--color-text-light);
+    margin: var(--spacing-xs) 0 0;
+    font-size: 0.9375rem;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+
+  .product-card {
+    background-color: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    text-align: center;
+  }
+
+  .product-card h3 {
+    color: var(--color-primary);
+    font-size: 1.0625rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .product-card p {
+    color: var(--color-text-light);
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .warranty-info {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .warranty-info h2 {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .warranty-grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .warranty-item {
+    text-align: center;
+  }
+
+  .warranty-years {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .warranty-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+  }
+
+  .warranty-info > p {
+    color: var(--color-text-light);
+  }
+
+  @media (min-width: 992px) {
+    .intro-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+</style>

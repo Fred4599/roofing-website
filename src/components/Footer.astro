@@ -1,0 +1,84 @@
+---
+import { siteConfig } from '../config/site';
+
+const currentYear = new Date().getFullYear();
+const yearsInBusiness = currentYear - siteConfig.yearEstablished;
+
+const footerLinks = {
+  roofing: [
+    { label: 'Roof Replacement', href: '/roof-replacement' },
+    { label: 'Roof Repair', href: '/roof-repair' },
+    { label: 'New Roof Installation', href: '/new-roof-installation' },
+    { label: 'Metal Roofing', href: '/metal-roofing' },
+    { label: 'Storm Damage Repair', href: '/storm-damage-roof-repair' },
+    { label: 'Insurance Claims', href: '/insurance-roof-claims' },
+  ],
+  siding: [
+    { label: 'Siding Installation', href: '/siding-installation' },
+    { label: 'Vinyl Siding', href: '/vinyl-siding' },
+    { label: 'Fiber Cement Siding', href: '/fiber-cement-siding' },
+    { label: 'Wood Siding', href: '/wood-siding' },
+    { label: 'Siding Repair', href: '/siding-repair' },
+  ],
+  company: [
+    { label: 'About Us', href: '/about' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Project Gallery', href: '/gallery' },
+    { label: 'Financing', href: '/financing' },
+    { label: 'Warranties', href: '/warranties' },
+    { label: 'FAQs', href: '/faqs' },
+    { label: 'Contact', href: '/contact' },
+  ],
+};
+---
+
+<footer class="border-t pt-16 pb-8 bg-slate-50 border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+            <div class="col-span-2 lg:col-span-2">
+                <a href="/" class="text-xl font-semibold tracking-tighter uppercase text-slate-900">
+                    Treasure Valley<span class="text-yellow-500">.</span>
+                </a>
+                <p class="mt-4 text-sm text-slate-500 max-w-xs">
+                    Premier roofing and siding services for the Treasure Valley. Trusted quality for over {yearsInBusiness} years.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-xs font-semibold uppercase tracking-wider mb-4 text-slate-900">Roofing</h4>
+                <ul class="space-y-3">
+                    {footerLinks.roofing.slice(0, 4).map((link) => (
+                        <li><a href={link.href} class="text-sm transition-colors text-slate-600 hover:text-slate-900">{link.label}</a></li>
+                    ))}
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-semibold uppercase tracking-wider mb-4 text-slate-900">Siding</h4>
+                <ul class="space-y-3">
+                    {footerLinks.siding.slice(0, 4).map((link) => (
+                        <li><a href={link.href} class="text-sm transition-colors text-slate-600 hover:text-slate-900">{link.label}</a></li>
+                    ))}
+                </ul>
+            </div>
+            <div class="">
+                <h4 class="text-xs font-semibold uppercase tracking-wider mb-4 text-slate-900">Company</h4>
+                <ul class="space-y-3">
+                    {footerLinks.company.slice(0, 4).map((link) => (
+                        <li><a href={link.href} class="text-sm transition-colors text-slate-600 hover:text-slate-900">{link.label}</a></li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4 border-slate-200">
+            <p class="text-xs text-slate-400">© {currentYear} {siteConfig.siteName}. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href={siteConfig.socialLinks.facebook} class="text-slate-400 hover:text-slate-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href={siteConfig.socialLinks.instagram} class="text-slate-400 hover:text-slate-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="20" height="20" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></rect><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1 1 12.63 8A4 4 0 0 1 16 11.37zM17.5 6.5h.01"></path></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

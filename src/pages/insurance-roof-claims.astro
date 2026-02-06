@@ -1,0 +1,372 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FAQ from '../components/FAQ.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const claimSteps = [
+  {
+    number: 1,
+    title: 'Free Inspection',
+    description: 'We thoroughly inspect your roof, documenting all damage with photos and measurements.',
+  },
+  {
+    number: 2,
+    title: 'File Your Claim',
+    description: 'Call your insurance company to file a claim. We provide guidance on what to say and expect.',
+  },
+  {
+    number: 3,
+    title: 'Adjuster Meeting',
+    description: 'We meet with your insurance adjuster on-site to ensure all damage is properly documented.',
+  },
+  {
+    number: 4,
+    title: 'Claim Approval',
+    description: 'Once approved, we review the scope of work and finalize your project details.',
+  },
+  {
+    number: 5,
+    title: 'Quality Installation',
+    description: 'We complete your roof replacement or repair using quality materials and expert craftsmanship.',
+  },
+  {
+    number: 6,
+    title: 'Final Walkthrough',
+    description: 'We inspect the completed work together and ensure your complete satisfaction.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Will you help me with the insurance claim process?',
+    answer: 'Absolutely. We guide you through every step—from initial documentation to meeting with your adjuster to finalizing the claim. We have extensive experience with insurance claims and know how to ensure fair assessments.',
+  },
+  {
+    question: 'Do I have to use my insurance company\'s contractor?',
+    answer: 'No. You have the right to choose any licensed contractor you want. Insurance companies cannot require you to use their preferred vendor. We recommend getting multiple estimates and choosing based on quality and reputation, not just who your insurer suggests.',
+  },
+  {
+    question: 'What if my claim is denied or underpaid?',
+    answer: 'Don\'t give up. We can help you appeal the decision with additional documentation. Sometimes adjusters miss damage or underestimate repair costs. We\'ll work with you to ensure you receive fair compensation.',
+  },
+  {
+    question: 'What is my out-of-pocket cost?',
+    answer: 'Typically, your only out-of-pocket expense is your deductible. Insurance should cover the rest of the approved work. We never recommend filing frivolous claims, but when damage exists, we ensure you receive what you\'re entitled to.',
+  },
+  {
+    question: 'Can you waive my deductible?',
+    answer: 'No, and you should be wary of any contractor who offers to. Waiving or absorbing deductibles is insurance fraud and illegal in Idaho. We operate ethically and within the law. Your deductible is always your responsibility.',
+  },
+  {
+    question: 'How long does the insurance process take?',
+    answer: 'From claim filing to completed repairs typically takes 2-6 weeks depending on insurance company response time and weather. We work efficiently once approved and keep you informed throughout the process.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Insurance Roof Claim Assistance',
+  provider: { '@type': 'RoofingContractor', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+};
+---
+
+<BaseLayout
+  title="Insurance Roof Claims in Boise"
+  description="Expert insurance roof claim assistance in Boise, Meridian, Eagle, and Garden City. We document damage, meet with adjusters, and ensure fair coverage. Free inspections."
+  canonicalPath="/insurance-roof-claims"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="Insurance Roof Claim Assistance"
+    subtitle="Filing an insurance claim can be overwhelming. We handle the details, work with your adjuster, and ensure you receive fair compensation for your roof damage."
+    ctaText="Free Damage Assessment"
+    ctaHref="/contact"
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>Navigating Insurance Claims Doesn't Have to Be Stressful</h2>
+          <p>
+            When your roof is damaged, the last thing you want is a complicated insurance battle. We've helped hundreds
+            of Treasure Valley homeowners navigate the claims process successfully. Let us handle the details while you
+            focus on your family.
+          </p>
+
+          <h3>What We Do For You</h3>
+          <ul class="services-list">
+            <li>
+              <strong>Document Everything:</strong> Comprehensive photos, measurements, and damage reports that insurance
+              companies require.
+            </li>
+            <li>
+              <strong>Meet With Adjusters:</strong> We're on-site when your adjuster visits to ensure nothing is missed.
+            </li>
+            <li>
+              <strong>Review Estimates:</strong> We compare the insurance estimate to actual repair costs and advocate for
+              fair coverage.
+            </li>
+            <li>
+              <strong>Handle Supplements:</strong> If additional damage is discovered, we file supplemental claims on your
+              behalf.
+            </li>
+            <li>
+              <strong>Answer Questions:</strong> We explain the process clearly and keep you informed at every step.
+            </li>
+          </ul>
+
+          <div class="trust-callout">
+            <h4>We Work With All Insurance Companies</h4>
+            <p>State Farm, Allstate, USAA, Farmers, Liberty Mutual, Progressive, and more.</p>
+          </div>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span>Insurance Process Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks
+    steps={claimSteps}
+    title="The Insurance Claim Process"
+    subtitle="We guide you through every step to ensure a smooth, successful claim."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="warning-section">
+        <div class="warning-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <div class="warning-content">
+          <h2>Beware of Storm Chasers</h2>
+          <p>
+            After major storms, out-of-state contractors flood the area promising easy insurance claims. Many disappear
+            after collecting payment, leaving homeowners with poor work and no recourse.
+          </p>
+          <h3>Red Flags to Watch For:</h3>
+          <ul>
+            <li>Door-to-door solicitation immediately after storms</li>
+            <li>Pressure to sign contracts quickly</li>
+            <li>Offers to pay or waive your deductible</li>
+            <li>No local address or references</li>
+            <li>Asking for large upfront payments</li>
+            <li>No proof of Idaho contractor license</li>
+          </ul>
+          <p>
+            <strong>Choose a local contractor you can trust.</strong> We've been serving the Treasure Valley for over 10
+            years and will be here for the long term.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Think You Have Storm Damage?</h2>
+        <p>
+          Don't wait to find out. We offer free inspections to assess your roof's condition. If there's damage, we'll
+          document it and help you file your claim. If there's not, we'll tell you honestly.
+        </p>
+        <a href="/contact" class="btn btn-primary btn-lg">Schedule Free Inspection</a>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} title="Insurance Claim FAQs" />
+
+  <section class="section">
+    <div class="container text-center">
+      <h2>Learn More About Storm Damage</h2>
+      <p class="section-subtitle">
+        For information on storm damage repairs, visit our <a href="/storm-damage-roof-repair">Storm Damage Repair</a> page.
+        Ready for a complete replacement? See our <a href="/roof-replacement">Roof Replacement</a> services.
+      </p>
+    </div>
+  </section>
+
+  <CityGrid
+    title="Insurance Claim Help Throughout the Valley"
+    description="We assist homeowners with insurance claims in Boise, Meridian, Eagle, Garden City, and surrounding areas."
+  />
+
+  <CTASection
+    title="Let Us Handle Your Insurance Claim"
+    subtitle="Get the coverage you deserve without the hassle. Contact us for a free assessment and claim assistance."
+    variant="default"
+  />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  .intro-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .intro-content h3 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .services-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .services-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .services-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .trust-callout {
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .trust-callout h4 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .trust-callout p {
+    color: var(--color-text-light);
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .warning-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    background-color: #fef2f2;
+    border: 2px solid #fca5a5;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+  }
+
+  .warning-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--color-secondary);
+  }
+
+  .warning-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .warning-content h2 {
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .warning-content h3 {
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+    font-size: 1rem;
+  }
+
+  .warning-content ul {
+    margin-bottom: var(--spacing-md);
+    padding-left: 1.5rem;
+  }
+
+  .warning-content li {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .warning-content > p:last-child {
+    margin: 0;
+  }
+
+  .cta-banner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-banner h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .cta-banner p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .warning-section {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .intro-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+</style>

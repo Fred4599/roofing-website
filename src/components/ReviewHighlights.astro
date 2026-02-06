@@ -1,0 +1,126 @@
+---
+import { siteConfig } from '../config/site';
+
+interface Review {
+  author: string;
+  rating: number;
+  text: string;
+  date?: string;
+  location?: string;
+}
+
+interface Props {
+  reviews?: Review[];
+  showSchema?: boolean;
+  title?: string;
+}
+
+const defaultReviews: Review[] = [
+  {
+    author: 'Michael S.',
+    rating: 5,
+    text: 'Treasure Valley Roofing replaced our entire roof after a hailstorm. They handled the insurance claim and made the whole process stress-free. Highly recommend them for any roofing work in Boise.',
+    date: '2024-09-15',
+    location: 'Boise, ID',
+  },
+  {
+    author: 'Jennifer L.',
+    rating: 5,
+    text: 'Great experience from start to finish. The crew was professional, cleaned up completely, and our new roof looks amazing. Fair pricing compared to other contractors we quoted.',
+    date: '2024-08-22',
+    location: 'Meridian, ID',
+  },
+  {
+    author: 'Robert D.',
+    rating: 5,
+    text: "We needed emergency roof repair after wind damage and they came out the next day. The repair work was excellent and they gave us an honest assessment. Won't hesitate to call them again.",
+    date: '2024-07-10',
+    location: 'Eagle, ID',
+  },
+  {
+    author: 'Sarah M.',
+    rating: 5,
+    text: 'Had vinyl siding installed on our home and the transformation is incredible. The team was friendly, punctual, and took great care to protect our landscaping during the project.',
+    date: '2024-06-05',
+    location: 'Garden City, ID',
+  },
+];
+
+const { reviews = defaultReviews, showSchema = true, title = 'What Our Customers Say' } = Astro.props;
+
+const averageRating = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+const reviewCount = reviews.length;
+
+const aggregateRatingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${siteConfig.siteUrl}/#business`,
+  name: siteConfig.siteName,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: averageRating.toFixed(1),
+    reviewCount: reviewCount,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  review: reviews.map((review) => ({
+    '@type': 'Review',
+    author: {
+      '@type': 'Person',
+      name: review.author,
+    },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: review.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    reviewBody: review.text,
+    datePublished: review.date,
+  })),
+};
+
+function renderStarsHtml(rating: number): string {
+  const starPath = 'M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z';
+  return Array.from({ length: 5 }).map((_, i) =>
+    `<svg class="w-4 h-4 ${i < rating ? 'text-yellow-400' : 'text-slate-200'}" fill="currentColor" viewBox="0 0 20 20"><path d="${starPath}" /></svg>`
+  ).join('');
+}
+---
+
+<section class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16 text-center">
+            <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl text-slate-900">{title}</h2>
+            <div class="mt-4 flex flex-col items-center gap-2">
+                <div class="flex gap-1" set:html={renderStarsHtml(5)} />
+                <p class="text-sm text-slate-500">
+                    <strong>{averageRating.toFixed(1)}</strong> out of 5 based on <strong>{reviewCount}</strong> reviews
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {reviews.map((review) => (
+                <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm transition-all hover:shadow-md">
+                    <div class="flex gap-1 mb-4" set:html={renderStarsHtml(review.rating)} />
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 italic">"{review.text}"</p>
+                    <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-50">
+                        <div>
+                            <p class="text-sm font-semibold text-slate-900">{review.author}</p>
+                            <p class="text-xs text-slate-400">{review.location}</p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <div class="mt-12 text-center">
+            <a href="/reviews" class="inline-flex items-center text-sm font-medium transition-colors text-slate-900 hover:text-yellow-600">
+                Read all reviews <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24" class="iconify ml-1"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+{showSchema && <script type="application/ld+json" set:html={JSON.stringify(aggregateRatingSchema)} />}

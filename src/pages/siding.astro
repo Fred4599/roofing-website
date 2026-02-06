@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const sidingServices = [
+  {
+    title: 'Siding Installation',
+    description: 'Complete siding installation for new and existing homes. Transform your home\'s exterior.',
+    href: '/siding-installation',
+  },
+  {
+    title: 'Vinyl Siding',
+    description: 'Affordable, low-maintenance vinyl siding in a wide variety of colors and styles.',
+    href: '/vinyl-siding',
+  },
+  {
+    title: 'Fiber Cement Siding',
+    description: 'Premium James Hardie fiber cement for superior durability and curb appeal.',
+    href: '/fiber-cement-siding',
+  },
+  {
+    title: 'Wood Siding',
+    description: 'Natural wood siding options including cedar and engineered wood products.',
+    href: '/wood-siding',
+  },
+  {
+    title: 'Siding Repair',
+    description: 'Fast, professional repairs for damaged, warped, or deteriorating siding.',
+    href: '/siding-repair',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Siding Services',
+  provider: { '@type': 'HomeAndConstructionBusiness', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+  description: 'Professional siding installation and repair services in the Treasure Valley.',
+};
+---
+
+<BaseLayout
+  title="Siding Services"
+  description="Professional siding services in Boise, Meridian, Eagle, and Garden City. Vinyl, fiber cement, and wood siding installation and repair. Free estimates."
+  canonicalPath="/siding"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="Professional Siding Services"
+    subtitle="Transform your home's exterior with quality siding installation. We offer vinyl, fiber cement, and wood options to match your style and budget."
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro text-center">
+        <h2>Our Siding Services</h2>
+        <p>
+          From complete siding replacement to repairs, we provide comprehensive siding solutions for Treasure Valley
+          homeowners. Quality materials, expert installation, and lasting results.
+        </p>
+      </div>
+
+      <ServiceCards services={sidingServices} columns={3} />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="two-column">
+        <div class="column-content">
+          <h2>Why Invest in New Siding?</h2>
+          <p>
+            Your home's siding does more than look good—it protects your investment from the elements. If your siding is
+            aging, damaged, or outdated, new siding can:
+          </p>
+          <ul class="benefits-list">
+            <li><strong>Boost Curb Appeal:</strong> New siding transforms your home's appearance instantly.</li>
+            <li><strong>Increase Home Value:</strong> Siding replacement offers excellent ROI—often 70-80% recouped.</li>
+            <li><strong>Improve Energy Efficiency:</strong> Modern insulated siding reduces heating and cooling costs.</li>
+            <li><strong>Reduce Maintenance:</strong> Quality siding requires minimal upkeep for decades.</li>
+            <li><strong>Protect Your Home:</strong> Proper siding prevents moisture damage and pest intrusion.</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary">Get Free Estimate</a>
+        </div>
+        <div class="column-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M3 15h18" />
+            </svg>
+            <span>Siding Project Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Siding Materials We Install</h2>
+      <div class="materials-grid">
+        <div class="material-card">
+          <h3>Vinyl Siding</h3>
+          <p>The most popular choice for its affordability and low maintenance. Available in countless colors.</p>
+          <ul>
+            <li>20-40 year lifespan</li>
+            <li>Never needs painting</li>
+            <li>Excellent value</li>
+          </ul>
+          <a href="/vinyl-siding" class="card-link">Learn More</a>
+        </div>
+        <div class="material-card featured">
+          <span class="material-badge">Most Popular</span>
+          <h3>Fiber Cement</h3>
+          <p>Premium durability and authentic wood appearance. James Hardie certified installers.</p>
+          <ul>
+            <li>30-50 year lifespan</li>
+            <li>Fire & pest resistant</li>
+            <li>Superior durability</li>
+          </ul>
+          <a href="/fiber-cement-siding" class="card-link">Learn More</a>
+        </div>
+        <div class="material-card">
+          <h3>Wood Siding</h3>
+          <p>Natural beauty and traditional appeal. Cedar and engineered wood options available.</p>
+          <ul>
+            <li>Natural aesthetics</li>
+            <li>Customizable finishes</li>
+            <li>Classic appearance</li>
+          </ul>
+          <a href="/wood-siding" class="card-link">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CityGrid
+    title="Siding Services Throughout the Treasure Valley"
+    description="We serve homeowners in Boise and surrounding communities with professional siding services."
+  />
+
+  <section class="section">
+    <div class="container text-center">
+      <h2>Need Roofing Too?</h2>
+      <p class="section-subtitle">
+        Many homeowners choose to update their roof and siding together for a complete exterior transformation.
+        <a href="/roof-replacement">Learn about our roofing services</a>.
+      </p>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to Transform Your Home?"
+    subtitle="Contact us today for a free siding consultation. We'll help you choose the perfect siding for your home and budget."
+  />
+</BaseLayout>
+
+<style>
+  .section-intro {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .section-intro p {
+    color: var(--color-text-light);
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+  }
+
+  .column-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .column-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+  }
+
+  .material-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .material-card.featured {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .material-badge {
+    position: absolute;
+    top: -10px;
+    right: var(--spacing-md);
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .material-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .material-card > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9375rem;
+  }
+
+  .material-card ul {
+    margin: 0 0 var(--spacing-md);
+    padding-left: 1.25rem;
+    font-size: 0.9375rem;
+    flex: 1;
+  }
+
+  .card-link {
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 992px) {
+    .two-column {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

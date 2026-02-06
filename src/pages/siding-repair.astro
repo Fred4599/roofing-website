@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const repairTypes = [
+  { title: 'Storm Damage', description: 'Wind, hail, and debris damage. We work with insurance on covered repairs.' },
+  { title: 'Cracked or Broken Panels', description: 'Individual panel replacement to restore your siding\'s integrity.' },
+  { title: 'Warped or Buckled Siding', description: 'Caused by heat or improper installation. We correct and prevent recurrence.' },
+  { title: 'Water Damage & Rot', description: 'Moisture intrusion repair including damaged sheathing underneath.' },
+  { title: 'Loose or Missing Pieces', description: 'Re-securing loose siding and replacing missing sections.' },
+  { title: 'Fading or Discoloration', description: 'Panel replacement for sections that no longer match.' },
+];
+
+const faqs = [
+  {
+    question: 'Can you match my existing siding?',
+    answer: 'In most cases, yes. We work with suppliers to find the closest match possible. For discontinued products or severe fading, we may need to replace larger sections to maintain uniformity. We\'ll discuss options during your estimate.',
+  },
+  {
+    question: 'Should I repair or replace my siding?',
+    answer: 'If damage is localized to a small area and your siding is in good condition overall, repair makes sense. If damage is widespread, your siding is 20+ years old, or you\'re seeing multiple issues, replacement is often more cost-effective long-term.',
+  },
+  {
+    question: 'How quickly can you repair storm damage?',
+    answer: 'We prioritize storm damage repairs and typically can assess and begin work within 1-3 days. Emergency board-up services are available same-day if needed to prevent further damage.',
+  },
+  {
+    question: 'Do you repair all types of siding?',
+    answer: 'Yes, we repair vinyl, fiber cement, wood, and aluminum siding. Our team is experienced with all common residential siding materials.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Siding Repair',
+  provider: { '@type': 'HomeAndConstructionBusiness', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+};
+---
+
+<BaseLayout
+  title="Siding Repair Services in Boise"
+  description="Professional siding repair in Boise, Meridian, Eagle, and Garden City. Storm damage, cracks, warping, and more. Fast service. Free estimates."
+  canonicalPath="/siding-repair"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="Siding Repair Services"
+    subtitle="Don't let damaged siding compromise your home's protection or appearance. We provide fast, quality repairs for all types of siding."
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>Professional Siding Repairs</h2>
+          <p>
+            Damaged siding isn't just an eyesore—it can lead to moisture intrusion, pest problems, and energy loss.
+            Whether you have a few cracked panels or storm damage, we restore your siding's protection quickly and
+            professionally.
+          </p>
+
+          <h3>Signs You Need Siding Repair</h3>
+          <ul class="signs-list">
+            <li>Visible cracks, holes, or broken panels</li>
+            <li>Warping, bubbling, or buckling sections</li>
+            <li>Loose or missing pieces</li>
+            <li>Signs of rot or moisture damage</li>
+            <li>Mold or mildew growth</li>
+            <li>Increased energy bills (air leaks)</li>
+            <li>Pest evidence or entry points</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary">Schedule Repair</a>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11 4H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-4M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+            <span>Siding Repair Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Types of Repairs We Handle</h2>
+      <div class="repairs-grid">
+        {
+          repairTypes.map((repair) => (
+            <div class="repair-card">
+              <h3>{repair.title}</h3>
+              <p>{repair.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} title="Siding Repair FAQs" />
+
+  <section class="section">
+    <div class="container text-center">
+      <h2>Need More Than a Repair?</h2>
+      <p class="section-subtitle">
+        If your siding is beyond repair, explore our <a href="/siding-installation">siding installation services</a>.
+        We offer vinyl, fiber cement, and wood options to completely transform your home.
+      </p>
+      <a href="/siding" class="btn btn-outline">View Siding Options</a>
+    </div>
+  </section>
+
+  <CityGrid />
+
+  <CTASection
+    title="Get Your Siding Fixed"
+    subtitle="Contact us for a free repair estimate. Fast response, quality work, and honest assessments."
+  />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  .intro-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .intro-content h3 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .signs-list {
+    margin-bottom: var(--spacing-lg);
+    padding-left: 1.5rem;
+  }
+
+  .signs-list li {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .repairs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+
+  .repair-card {
+    background-color: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .repair-card h3 {
+    font-size: 1.0625rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .repair-card p {
+    color: var(--color-text-light);
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+    max-width: 500px;
+    margin: 0 auto var(--spacing-md);
+  }
+
+  @media (min-width: 992px) {
+    .intro-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+</style>

@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const roofingFaqs = [
+  {
+    question: 'How long does a roof last in Boise?',
+    answer: 'In the Treasure Valley, a quality asphalt shingle roof typically lasts 20-30 years, while metal roofing can last 40-70 years. Factors like proper ventilation, attic insulation, and maintenance affect longevity. Our Idaho weather with hot summers, cold winters, and occasional hail can impact roof life, which is why quality installation matters.',
+  },
+  {
+    question: 'How do I know if I need a new roof or just repairs?',
+    answer: 'Signs you may need replacement include: shingles that are curling, cracking, or missing; granules in gutters; multiple leaks; roof is 20+ years old; or visible sagging. If damage is localized to one area and the roof is under 15 years old, repairs might suffice. We provide honest assessments during our free inspections.',
+  },
+  {
+    question: 'How long does a roof replacement take?',
+    answer: 'Most residential roof replacements in the Boise area take 1-3 days depending on size, complexity, and weather. A typical 2,000 sq ft home usually takes 1-2 days. We work efficiently while maintaining quality, and we clean up thoroughly each day.',
+  },
+  {
+    question: 'What roofing materials do you recommend for Idaho?',
+    answer: 'We recommend GAF or Owens Corning architectural shingles for most Boise homes—they handle our temperature swings and offer excellent value. For homes wanting premium durability, standing seam metal roofing is ideal for Idaho snow and can last 50+ years. We will help you choose based on your budget and goals.',
+  },
+  {
+    question: 'Can you replace my roof in winter?',
+    answer: 'Yes, we can install roofs in Idaho winters when conditions permit. Most shingle manufacturers approve installation above 40°F. We monitor weather closely and use special techniques for cold-weather installation. Metal roofing can be installed in colder temps. We will advise on optimal timing for your project.',
+  },
+];
+
+const insuranceFaqs = [
+  {
+    question: 'Do you work with insurance companies on storm damage claims?',
+    answer: 'Absolutely. We have extensive experience with insurance claims in Idaho. We document all damage thoroughly, meet with adjusters on-site, and advocate on your behalf to ensure fair coverage. Many Treasure Valley homeowners have benefited from our claims expertise after hail and wind storms.',
+  },
+  {
+    question: 'What should I do after a storm damages my roof?',
+    answer: 'First, document visible damage with photos from the ground (stay off the roof for safety). Call your insurance company to file a claim. Then contact us for a free inspection—we will provide a detailed damage assessment and work directly with your adjuster. Don\'t wait too long as some policies have time limits.',
+  },
+  {
+    question: 'Will my insurance cover a full roof replacement?',
+    answer: 'If storm damage is widespread, yes, insurance typically covers full replacement. Adjusters look at damage extent, roof age, and local building codes. We document everything to support your claim and can often identify damage that homeowners miss. We will ensure you receive fair compensation for necessary work.',
+  },
+  {
+    question: 'Do I have to pay my deductible?',
+    answer: 'Yes, your deductible is your responsibility. Be wary of any contractor who offers to "waive" your deductible—this is insurance fraud and illegal. We provide honest pricing and can help you understand your policy coverage, but we always operate ethically and within the law.',
+  },
+];
+
+const sidingFaqs = [
+  {
+    question: 'What type of siding is best for homes in Idaho?',
+    answer: 'For the Treasure Valley, we recommend vinyl siding for budget-friendly durability, or James Hardie fiber cement for premium performance. Both handle our dry summers and cold winters well. Fiber cement offers better fire resistance—important in areas prone to wildfires. We will discuss options during your estimate.',
+  },
+  {
+    question: 'How long does siding installation take?',
+    answer: 'A typical siding project takes 1-2 weeks depending on home size and complexity. This includes removing old siding, installing weather barrier, and applying new siding. We work efficiently but never rush quality. Weather can affect timeline, so we will provide a realistic schedule.',
+  },
+  {
+    question: 'Can new siding improve my home\'s energy efficiency?',
+    answer: 'Yes! New siding with proper insulation can significantly reduce heating and cooling costs. We can add insulated housewrap or foam-backed siding panels. Many Boise homeowners see noticeable energy bill reductions after siding replacement, especially if the old siding had gaps or poor insulation.',
+  },
+];
+
+const generalFaqs = [
+  {
+    question: 'Are you licensed and insured?',
+    answer: `Yes, we are fully licensed in Idaho (License #${siteConfig.licenseNumber}) and carry comprehensive liability insurance and workers' compensation coverage. We're happy to provide documentation upon request. Working with licensed, insured contractors protects you from liability and ensures quality work.`,
+  },
+  {
+    question: 'Do you offer free estimates?',
+    answer: 'Yes, all our estimates are completely free with no obligation. We will inspect your roof or siding, discuss your needs and options, and provide a detailed written estimate. There is no pressure—take your time to decide. We are confident our quality and pricing will earn your business.',
+  },
+  {
+    question: 'What areas do you serve?',
+    answer: 'We serve the entire Treasure Valley including Boise, Meridian, Eagle, Garden City, and surrounding areas in Ada County. If you are unsure whether we service your area, just give us a call—we are happy to help.',
+  },
+  {
+    question: 'Do you offer financing?',
+    answer: 'Yes, we offer flexible financing options including same-as-cash plans, low monthly payment options, and deferred interest programs. Most applications can be processed in minutes with instant approval. Visit our financing page or ask during your estimate for details.',
+  },
+  {
+    question: 'What warranties do you provide?',
+    answer: 'We offer a 10-year workmanship warranty on all installations. Additionally, as certified installers for GAF, Owens Corning, and James Hardie, we can offer extended manufacturer warranties up to 50 years or lifetime on materials. See our warranties page for full details.',
+  },
+];
+---
+
+<BaseLayout
+  title="Frequently Asked Questions"
+  description="Get answers to common questions about roofing, siding, insurance claims, and our services in Boise, Meridian, Eagle, and Garden City."
+  canonicalPath="/faqs"
+>
+  <HeroSection
+    title="Frequently Asked Questions"
+    subtitle="Find answers to common questions about roofing, siding, and our services. Can't find what you're looking for? Contact us anytime."
+    ctaText="Contact Us"
+    ctaHref="/contact"
+  />
+
+  <section class="section">
+    <div class="container">
+      <nav class="faq-nav">
+        <a href="#roofing" class="faq-nav-link">Roofing</a>
+        <a href="#insurance" class="faq-nav-link">Insurance Claims</a>
+        <a href="#siding" class="faq-nav-link">Siding</a>
+        <a href="#general" class="faq-nav-link">General</a>
+      </nav>
+    </div>
+  </section>
+
+  <section id="roofing" class="faq-section section">
+    <div class="container">
+      <h2>Roofing Questions</h2>
+      <FAQ faqs={roofingFaqs} title="" />
+    </div>
+  </section>
+
+  <section id="insurance" class="faq-section section section-alt">
+    <div class="container">
+      <h2>Insurance & Storm Damage</h2>
+      <FAQ faqs={insuranceFaqs} title="" />
+    </div>
+  </section>
+
+  <section id="siding" class="faq-section section">
+    <div class="container">
+      <h2>Siding Questions</h2>
+      <FAQ faqs={sidingFaqs} title="" />
+    </div>
+  </section>
+
+  <section id="general" class="faq-section section section-alt">
+    <div class="container">
+      <h2>General Questions</h2>
+      <FAQ faqs={generalFaqs} title="" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="still-questions text-center">
+        <h2>Still Have Questions?</h2>
+        <p>
+          Our team is happy to answer any questions you have about your roofing or siding project. Reach out by phone or
+          email, or fill out our contact form.
+        </p>
+        <div class="contact-options">
+          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`} class="btn btn-primary btn-lg">
+            Call {siteConfig.phone}
+          </a>
+          <a href="/contact" class="btn btn-outline btn-lg">Send a Message</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .faq-nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-nav-link {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: all var(--transition);
+  }
+
+  .faq-nav-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .faq-section h2 {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .still-questions {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .still-questions h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .still-questions p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (min-width: 576px) {
+    .contact-options {
+      flex-direction: row;
+    }
+  }
+</style>

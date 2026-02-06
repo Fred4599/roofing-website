@@ -1,0 +1,235 @@
+---
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  ogImage?: string;
+  noindex?: boolean;
+  schema?: object | object[];
+  ogType?: 'website' | 'article';
+}
+
+const { title, description, canonicalPath, ogImage, noindex, schema, ogType } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <SEO
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      ogImage={ogImage}
+      noindex={noindex}
+      schema={schema}
+      ogType={ogType}
+    />
+  </head>
+  <body class="antialiased selection:bg-yellow-400 selection:text-slate-900 bg-slate-50 text-slate-800 font-sans">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[100] focus:bg-yellow-400 focus:text-slate-900 focus:px-4 focus:py-2">Skip to main content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  /* Legacy CSS variable compatibility for pages not yet converted to Tailwind */
+  :root {
+    --color-primary: #0f172a;
+    --color-primary-dark: #020617;
+    --color-primary-light: #334155;
+    --color-secondary: #eab308;
+    --color-secondary-dark: #ca8a04;
+    --color-accent: #facc15;
+    --color-text: #1e293b;
+    --color-text-light: #64748b;
+    --color-text-inverse: #ffffff;
+    --color-bg: #ffffff;
+    --color-bg-alt: #f8fafc;
+    --color-bg-dark: #0f172a;
+    --color-border: #e2e8f0;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --max-width: 1280px;
+    --header-height: 64px;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+    --border-radius: 12px;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --transition: 0.2s ease-in-out;
+  }
+
+  /* Base element resets for legacy pages */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Legacy utility classes */
+  .container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  @media (min-width: 640px) {
+    .container { padding: 0 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 2rem; }
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+  @media (min-width: 768px) {
+    .section { padding: 6rem 0; }
+  }
+
+  .section-alt {
+    background-color: var(--color-bg-alt);
+  }
+
+  /* Legacy button system */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background-color: #0f172a;
+    color: #ffffff;
+  }
+  .btn-primary:hover {
+    background-color: #1e293b;
+    color: #ffffff;
+  }
+  .btn-secondary {
+    background-color: #facc15;
+    color: #0f172a;
+  }
+  .btn-secondary:hover {
+    background-color: #eab308;
+    color: #0f172a;
+  }
+  .btn-outline {
+    background-color: transparent;
+    border: 2px solid #e2e8f0;
+    color: #0f172a;
+  }
+  .btn-outline:hover {
+    border-color: #facc15;
+    background-color: #fefce8;
+    color: #0f172a;
+  }
+  .btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .text-center { text-align: center; }
+
+  /* Link resets for Tailwind body */
+  a { transition: color 0.2s ease-in-out; }
+
+  /* Heading defaults */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  h1 { font-size: clamp(2rem, 5vw, 3rem); }
+  h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
+  h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); }
+
+  /* Custom grid background pattern */
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  }
+  .bg-grid-pattern-dark {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+  /* Responsive overrides for legacy sections on small screens */
+  @media (max-width: 767px) {
+    .section { padding: 3rem 0; }
+  }
+
+  /* Fix grids that use minmax with large values from overflowing on mobile */
+  @media (max-width: 639px) {
+    .two-column,
+    .intro-grid,
+    .about-grid {
+      grid-template-columns: 1fr !important;
+    }
+    
+    /* Ensure any grid with auto-fit doesn't overflow */
+    [style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* Prevent horizontal overflow on the entire page */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Make all legacy buttons touch-friendly on mobile */
+  @media (max-width: 639px) {
+    .btn { 
+      width: 100%; 
+      justify-content: center;
+      min-height: 44px;
+    }
+    .btn-lg {
+      padding: 0.875rem 1.5rem;
+    }
+  }
+</style>

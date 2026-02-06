@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const projects = [
+  { title: 'Boise Ranch Home Roof Replacement', location: 'Boise, ID', category: 'roofing', type: 'Asphalt Shingles' },
+  { title: 'Meridian Two-Story Siding', location: 'Meridian, ID', category: 'siding', type: 'Vinyl Siding' },
+  { title: 'Eagle Custom Home Metal Roof', location: 'Eagle, ID', category: 'roofing', type: 'Standing Seam Metal' },
+  { title: 'Garden City Storm Damage Repair', location: 'Garden City, ID', category: 'roofing', type: 'Emergency Repair' },
+  { title: 'Boise Historic Home Restoration', location: 'Boise, ID', category: 'siding', type: 'Fiber Cement' },
+  { title: 'Meridian New Construction Roof', location: 'Meridian, ID', category: 'roofing', type: 'Architectural Shingles' },
+  { title: 'Eagle Luxury Home Exterior', location: 'Eagle, ID', category: 'both', type: 'Complete Exterior' },
+  { title: 'Boise Craftsman Style Siding', location: 'Boise, ID', category: 'siding', type: 'Wood Siding' },
+  { title: 'Meridian Insurance Claim Project', location: 'Meridian, ID', category: 'roofing', type: 'Full Replacement' },
+  { title: 'Garden City Modern Home', location: 'Garden City, ID', category: 'siding', type: 'Mixed Materials' },
+  { title: 'Boise Split-Level Renovation', location: 'Boise, ID', category: 'both', type: 'Roof & Siding' },
+  { title: 'Eagle Mountain View Home', location: 'Eagle, ID', category: 'roofing', type: 'Premium Shingles' },
+];
+
+const filters = ['all', 'roofing', 'siding'];
+---
+
+<BaseLayout
+  title="Project Gallery"
+  description="Browse our portfolio of completed roofing and siding projects in Boise, Meridian, Eagle, and Garden City. See the quality of our work."
+  canonicalPath="/gallery"
+>
+  <HeroSection
+    title="Our Project Gallery"
+    subtitle="Browse our portfolio of completed roofing and siding projects throughout the Treasure Valley. Quality craftsmanship you can see."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery-filters">
+        {
+          filters.map((filter) => (
+            <button class={`filter-btn ${filter === 'all' ? 'active' : ''}`} data-filter={filter}>
+              {filter === 'all' ? 'All Projects' : filter.charAt(0).toUpperCase() + filter.slice(1)}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="gallery-grid">
+        {
+          projects.map((project, index) => (
+            <article class="gallery-item" data-category={project.category}>
+              <div class="gallery-image">
+                <div class="image-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                  <span>Project Photo {index + 1}</span>
+                </div>
+                <span class={`project-badge ${project.category}`}>
+                  {project.category === 'both' ? 'Roof & Siding' : project.category}
+                </span>
+              </div>
+              <div class="gallery-info">
+                <h3>{project.title}</h3>
+                <p class="project-meta">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  {project.location}
+                </p>
+                <p class="project-type">{project.type}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Want Results Like These?"
+    subtitle="Let us transform your home with quality roofing or siding. Get your free estimate today."
+  />
+</BaseLayout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      galleryItems.forEach((item) => {
+        const category = item.getAttribute('data-category');
+        if (filter === 'all' || category === filter || (filter === 'roofing' && category === 'both') || (filter === 'siding' && category === 'both')) {
+          (item as HTMLElement).style.display = 'block';
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background-color: var(--color-bg-alt);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .gallery-item {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all var(--transition);
+  }
+
+  .gallery-item:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .gallery-image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+  }
+
+  .image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.5;
+  }
+
+  .project-badge {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+  }
+
+  .project-badge.roofing {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .project-badge.siding {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .project-badge.both {
+    background-color: var(--color-secondary);
+    color: var(--color-text-inverse);
+  }
+
+  .gallery-info {
+    padding: var(--spacing-md);
+  }
+
+  .gallery-info h3 {
+    font-size: 1.0625rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    margin-bottom: 4px;
+  }
+
+  .project-type {
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0;
+  }
+</style>

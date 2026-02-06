@@ -1,0 +1,323 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import FAQ from '../components/FAQ.astro';
+import CityGrid from '../components/CityGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { siteConfig } from '../config/site';
+
+const metalTypes = [
+  {
+    title: 'Standing Seam',
+    description: 'The premium choice for metal roofing. Concealed fasteners, clean lines, and superior weather protection.',
+    features: ['50+ year lifespan', 'No exposed fasteners', 'Excellent for snow shedding', 'Modern aesthetics'],
+  },
+  {
+    title: 'Metal Shingles',
+    description: 'Traditional shingle appearance with metal durability. Perfect for homes wanting classic looks.',
+    features: ['Looks like asphalt', 'Easy to repair', 'Various styles available', 'Lightweight'],
+  },
+  {
+    title: 'Corrugated Panels',
+    description: 'Cost-effective metal option ideal for agricultural buildings, shops, and budget-conscious projects.',
+    features: ['Most affordable', 'Quick installation', 'Great for outbuildings', 'Various colors'],
+  },
+];
+
+const faqs = [
+  {
+    question: 'How long does metal roofing last in Idaho?',
+    answer: 'Quality metal roofing lasts 40-70+ years in Idaho conditions. Standing seam systems with proper installation can exceed 50 years with minimal maintenance. This is 2-3 times longer than asphalt shingles.',
+  },
+  {
+    question: 'Is metal roofing noisy during rain or hail?',
+    answer: 'Modern metal roofing with proper insulation and underlayment is no louder than other roofing materials. The solid decking and attic space absorb sound effectively.',
+  },
+  {
+    question: 'Does metal roofing attract lightning?',
+    answer: 'No, metal roofing does not attract lightning. If struck, metal actually dissipates the energy safely and won\'t catch fire like other materials can. It\'s actually safer in lightning storms.',
+  },
+  {
+    question: 'How much more does metal roofing cost?',
+    answer: 'Metal roofing typically costs 2-3x more than asphalt shingles upfront. However, when you factor in the 50+ year lifespan vs. 25 years for shingles, metal often costs less over time. Plus, it can increase home value.',
+  },
+  {
+    question: 'Is metal roofing good for Idaho snow?',
+    answer: 'Excellent! Metal roofing sheds snow efficiently, reducing ice dam formation and heavy snow loads. Snow guards can be added to control snow release in high-traffic areas.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Metal Roofing Installation',
+  provider: { '@type': 'RoofingContractor', name: siteConfig.siteName },
+  areaServed: siteConfig.serviceAreas.map((area) => ({ '@type': 'City', name: area.name })),
+};
+---
+
+<BaseLayout
+  title="Metal Roofing in Boise"
+  description="Metal roofing installation in Boise, Meridian, Eagle, and Garden City. Standing seam, metal shingles, and more. 50+ year lifespan. Free estimates."
+  canonicalPath="/metal-roofing"
+  schema={serviceSchema}
+>
+  <HeroSection
+    title="Metal Roofing Installation"
+    subtitle="Invest in a roof that lasts a lifetime. Our metal roofing solutions offer unmatched durability, energy efficiency, and protection for Idaho homes."
+  />
+
+  <TrustBadges variant="compact" />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>Why Choose Metal Roofing in Idaho?</h2>
+          <p>
+            Idaho's climate—with hot summers, cold winters, and occasional severe weather—is perfectly suited for metal
+            roofing. Here's why Treasure Valley homeowners are choosing metal:
+          </p>
+          <ul class="benefits-list">
+            <li><strong>Exceptional Longevity:</strong> 50+ years compared to 20-30 for shingles.</li>
+            <li><strong>Superior Snow Performance:</strong> Metal sheds snow efficiently, reducing ice dams.</li>
+            <li><strong>Energy Efficiency:</strong> Reflects solar heat, reducing cooling costs up to 25%.</li>
+            <li><strong>Fire Resistant:</strong> Class A fire rating—important for wildfire-prone areas.</li>
+            <li><strong>Wind Resistant:</strong> Withstands winds up to 140 MPH.</li>
+            <li><strong>Low Maintenance:</strong> Virtually maintenance-free for decades.</li>
+            <li><strong>Eco-Friendly:</strong> 100% recyclable at end of life.</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary">Get Metal Roofing Quote</a>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 21h18M3 21V10l9-7 9 7v11M3 14h18M3 17h18" />
+            </svg>
+            <span>Metal Roof Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Metal Roofing Options</h2>
+      <p class="text-center section-subtitle">
+        We install various metal roofing styles to match your home's architecture and your budget.
+      </p>
+      <div class="options-grid">
+        {
+          metalTypes.map((type) => (
+            <div class="option-card">
+              <h3>{type.title}</h3>
+              <p>{type.description}</p>
+              <ul>
+                {type.features.map((feature) => (
+                  <li>{feature}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="comparison-section">
+        <h2 class="text-center">Metal vs. Asphalt Shingles</h2>
+        <div class="comparison-table">
+          <div class="comparison-header">
+            <div class="comparison-cell"></div>
+            <div class="comparison-cell highlight">Metal Roofing</div>
+            <div class="comparison-cell">Asphalt Shingles</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell label">Lifespan</div>
+            <div class="comparison-cell highlight">50-70 years</div>
+            <div class="comparison-cell">20-30 years</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell label">Wind Resistance</div>
+            <div class="comparison-cell highlight">Up to 140 MPH</div>
+            <div class="comparison-cell">Up to 130 MPH</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell label">Fire Rating</div>
+            <div class="comparison-cell highlight">Class A</div>
+            <div class="comparison-cell">Class A-C</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell label">Maintenance</div>
+            <div class="comparison-cell highlight">Minimal</div>
+            <div class="comparison-cell">Periodic</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell label">Initial Cost</div>
+            <div class="comparison-cell">Higher</div>
+            <div class="comparison-cell highlight">Lower</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell label">Lifetime Cost</div>
+            <div class="comparison-cell highlight">Lower</div>
+            <div class="comparison-cell">Higher</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} title="Metal Roofing FAQs" />
+
+  <CityGrid />
+
+  <CTASection
+    title="Ready for a Roof That Lasts?"
+    subtitle="Contact us to discuss metal roofing options for your home. Free consultations and detailed estimates."
+  />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  .intro-content h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro-content > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefits-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    gap: var(--spacing-xs);
+  }
+
+  .image-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .option-card {
+    background-color: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+  }
+
+  .option-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .option-card > p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9375rem;
+  }
+
+  .option-card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .comparison-section {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .comparison-table {
+    margin-top: var(--spacing-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+
+  .comparison-header,
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .comparison-header {
+    background-color: var(--color-bg-alt);
+    font-weight: 600;
+  }
+
+  .comparison-cell {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .comparison-cell.label {
+    text-align: left;
+    font-weight: 500;
+  }
+
+  .comparison-cell.highlight {
+    background-color: rgba(30, 64, 175, 0.05);
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .comparison-row:last-child .comparison-cell {
+    border-bottom: none;
+  }
+
+  @media (min-width: 992px) {
+    .intro-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+</style>

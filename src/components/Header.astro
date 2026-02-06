@@ -1,0 +1,174 @@
+---
+import { siteConfig } from '../config/site';
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  {
+    label: 'Roofing',
+    href: '/roofing',
+    children: [
+      { label: 'Roof Replacement', href: '/roof-replacement' },
+      { label: 'Roof Repair', href: '/roof-repair' },
+      { label: 'New Roof Installation', href: '/new-roof-installation' },
+      { label: 'Metal Roofing', href: '/metal-roofing' },
+      { label: 'Storm Damage Repair', href: '/storm-damage-roof-repair' },
+      { label: 'Insurance Claims', href: '/insurance-roof-claims' },
+    ],
+  },
+  {
+    label: 'Siding',
+    href: '/siding',
+    children: [
+      { label: 'Siding Installation', href: '/siding-installation' },
+      { label: 'Vinyl Siding', href: '/vinyl-siding' },
+      { label: 'Fiber Cement Siding', href: '/fiber-cement-siding' },
+      { label: 'Wood Siding', href: '/wood-siding' },
+      { label: 'Siding Repair', href: '/siding-repair' },
+    ],
+  },
+  {
+    label: 'Locations',
+    href: '/locations/boise-id',
+    children: siteConfig.serviceAreas.map((area) => ({
+      label: `${area.name}, ${area.state}`,
+      href: `/locations/${area.slug}`,
+    })),
+  },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'Contact', href: '/contact' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(href);
+}
+---
+
+<nav class="fixed z-50 w-full border-b top-0 backdrop-blur-md bg-white/80 border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center min-w-0">
+                <a href="/" class="text-lg sm:text-2xl font-semibold tracking-tighter uppercase text-slate-900 truncate">
+                    <span class="hidden sm:inline">Treasure Valley</span>
+                    <span class="sm:hidden">TV Roofing</span>
+                    <span class="text-yellow-500">.</span>
+                </a>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+                {navItems.map((item) => (
+                    item.children ? (
+                        <div class="relative group h-16 flex items-center">
+                            <button class={`flex items-center text-sm font-medium transition-colors focus:outline-none ${isActive(item.href) ? 'text-slate-900' : 'text-slate-600 hover:text-slate-900'}`}>
+                                {item.label}
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24" class="iconify ml-1 group-hover:text-slate-900 transition-colors text-slate-400">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"></path>
+                                </svg>
+                            </button>
+                            <!-- Dropdown Menu -->
+                            <div class="absolute top-16 left-1/2 -translate-x-1/2 w-64 border shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top pt-2 overflow-hidden bg-white border-slate-200">
+                                {item.children.map((child, index) => (
+                                    <a href={child.href} class={`block px-4 py-3 text-sm flex items-center gap-3 text-slate-600 hover:bg-slate-50 hover:text-slate-900 ${index !== item.children.length - 1 ? 'border-b border-slate-50' : ''}`}>
+                                        {child.label}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    ) : (
+                        <a href={item.href} class={`text-sm font-medium transition-colors ${isActive(item.href) ? 'text-slate-900' : 'text-slate-600 hover:text-slate-900'}`}>
+                            {item.label}
+                        </a>
+                    )
+                ))}
+            </div>
+
+            <!-- CTA + Mobile Toggle -->
+            <div class="flex items-center space-x-3">
+                <a href="/contact" class="hidden sm:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition-all shadow-sm text-slate-900 bg-yellow-400">
+                    Free Estimate
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md text-slate-400 hover:text-slate-900 hover:bg-slate-100" aria-label="Toggle menu" aria-expanded="false">
+                    <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16M4 12h16M4 19h16"></path>
+                    </svg>
+                    <svg id="menu-icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div class="px-4 pt-3 pb-4 space-y-1">
+            {navItems.map((item) => (
+                <div>
+                    <a href={item.href} class={`block px-3 py-3 rounded-md text-base font-medium ${isActive(item.href) ? 'text-slate-900 bg-slate-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}>
+                        {item.label}
+                    </a>
+                    {item.children && (
+                        <div class="pl-4 pb-1">
+                            {item.children.map((child) => (
+                                <a href={child.href} class={`block px-3 py-2 rounded-md text-sm font-medium ${isActive(child.href) ? 'text-slate-900 bg-slate-50' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'}`}>
+                                    {child.label}
+                                </a>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            ))}
+            <div class="pt-4 pb-2 border-t border-slate-200 space-y-3">
+                <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`} class="block w-full text-center px-5 py-3 text-base font-medium text-slate-700 border border-slate-200 hover:bg-slate-50 rounded-md">
+                    Call {siteConfig.phone}
+                </a>
+                <a href="/contact" class="block w-full text-center px-5 py-3 text-base font-medium text-slate-900 bg-yellow-400 hover:bg-yellow-500 rounded-md">
+                    Free Estimate
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Spacer to offset fixed nav -->
+<div class="h-16"></div>
+
+<script>
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+
+    button?.addEventListener('click', () => {
+        const isOpen = !menu?.classList.contains('hidden');
+        menu?.classList.toggle('hidden');
+        iconOpen?.classList.toggle('hidden');
+        iconClose?.classList.toggle('hidden');
+        button.setAttribute('aria-expanded', (!isOpen).toString());
+        
+        // Prevent body scroll when menu is open
+        if (!isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu on resize to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) {
+            menu?.classList.add('hidden');
+            iconOpen?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+            button?.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
+</script>
