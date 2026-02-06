@@ -6,7 +6,10 @@ export default defineConfig({
   site: 'https://tvroofandsiding.com',
   integrations: [
     tailwind(),
-    sitemap(),
+    sitemap({
+      filter: (page) => page !== undefined,
+      serialize: (item) => item,
+    }),
   ],
   build: {
     inlineStylesheets: 'auto',
