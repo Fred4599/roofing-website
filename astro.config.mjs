@@ -5,11 +5,7 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: process.env.SITE_URL || 'https://tvroofandsiding.com',
   integrations: [
-    sitemap({
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
-    }),
+    sitemap(),
     tailwind(),
   ],
   build: {
